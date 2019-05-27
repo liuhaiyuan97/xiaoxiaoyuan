@@ -21,7 +21,7 @@ import android.text.TextUtils;
 import java.util.List;
 
 /**
- * Container for the information needed to generate code through the {@link CodeGeneratorService}.
+ * Container for the information needed to generate code through the {@link CodeGeneratorService}.用于生成代码所需的信息的容器
  */
 public class CodeGenerationRequest {
     private final CodeGeneratorCallback mCallback;
@@ -31,15 +31,15 @@ public class CodeGenerationRequest {
     private final LanguageDefinition mGeneratorLanguage;
 
     /**
-     * Constructor for a code generation request.
-     * @param xml The xml of a full workspace for which code should be generated.
-     * @param callback A callback specifying what to do with the generated code.
+     * Constructor for a code generation request.代码生成请求的构造函数。
+     * @param xml The xml of a full workspace for which code should be generated.应该生成代码的完整工作区的XML
+     * @param callback A callback specifying what to do with the generated code.指定如何处理生成代码的回调
      * @param generatorsLanguage The {@link LanguageDefinition} for the core language being
- *                                   used to generate code.
+ *                                   used to generate code.用于生成代码的核心语言。
      * @param blockDefinitionsFilenames The paths of the js files containing block definitions,
-*                                  relative to file:///android_assets/background_compiler.html.
+*                                  relative to file:///android_assets/background_compiler.html.包含文件定义的JS文件的路径
      * @param blockGeneratorsFilenames The path of the js file containing block generators, relative
-*                                  to file:///android_assets/background_compiler.html.
+*                                  to file:///android_assets/background_compiler.html.包含文件生成器的JS文件相对于文件的路径
      */
     public CodeGenerationRequest(@NonNull String xml, CodeGeneratorCallback callback,
             @NonNull LanguageDefinition generatorsLanguage, List<String> blockDefinitionsFilenames,
@@ -81,9 +81,9 @@ public class CodeGenerationRequest {
 
     public interface CodeGeneratorCallback {
         /**
-         * Called when finished generating code.
+         * Called when finished generating code.完成生成代码时调用
          *
-         * @param generatedCode The string containing all of the generated code.
+         * @param generatedCode The string containing all of the generated code.包含所有生成代码的字符串
          */
         void onFinishCodeGeneration(String generatedCode);
     }

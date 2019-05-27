@@ -30,7 +30,7 @@
   },
   {
     "type": "text_append",
-    "message0": "to %1 append text %2",
+    "message0": "给 %1 拼接字符串 %2",
     "args0": [
       {
         "type": "field_variable",
@@ -50,7 +50,7 @@
   },
   {
     "type": "text_length",
-    "message0": "length of %1",
+    "message0": "字符串的长度 %1",
     "args0": [
       {
         "type": "input_value",
@@ -65,7 +65,7 @@
   },
   {
     "type": "text_isEmpty",
-    "message0": "%1 is empty",
+    "message0": "%1 是空字符串",
     "args0": [
       {
         "type": "input_value",
@@ -81,7 +81,7 @@
   },
   {
     "type": "text_indexOf",
-    "message0": "in text %1 find %2 occurrence of text %3",
+    "message0": "在字符串 %1 中寻找 %2 存在以下字符串 %3 的位置",
     "args0": [
       {
         "type": "input_value",
@@ -93,11 +93,11 @@
         "name": "END",
         "options": [
           [
-            "first",
+            "第一次",
             "FIRST"
           ],
           [
-            "last",
+            "最后一次",
             "LAST"
           ]
         ]
@@ -116,7 +116,7 @@
   },
   {
     "type": "text_charAt",
-    "message0": "in text %1 get %2 %3",
+    "message0": "在字符串 %1 中按照 %2 的顺序 获取第%3个",
     "args0": [
       {
         "type": "input_value",
@@ -128,12 +128,12 @@
         "name": "WHERE",
         "options": [
           [
-            "letter #",
+            "从前往后数",
             "FROM_START"
           ],
           [
             "letter # from end",
-            "FROM_END"
+            "从后往前数"
           ]
         ]
       },
@@ -152,7 +152,7 @@
   },
   {
     "type": "text_getSubstring",
-    "message0": "in text %1 get substring from %2 %3 to %4 %5",
+    "message0": "在字符串 %1 中 %2 第 %3 个到 %4 第 %5 个",
     "args0": [
       {
         "type": "input_value",
@@ -164,11 +164,11 @@
         "name": "WHERE1",
         "options": [
           [
-            "letter #",
+            "从前往后数",
             "FROM_START"
           ],
           [
-            "letter # from end",
+            "从后往前数",
             "FROM_END"
           ]
         ]
@@ -183,11 +183,11 @@
         "name": "WHERE2",
         "options": [
           [
-            "letter #",
+            "从前往后数",
             "FROM_START"
           ],
           [
-            "letter # from end",
+            "从后往前数",
             "FROM_END"
           ]
         ]
@@ -207,22 +207,22 @@
   },
   {
     "type": "text_changeCase",
-    "message0": "to %1 %2",
+    "message0": "变为 %1 %2",
     "args0": [
       {
         "type": "field_dropdown",
         "name": "CASE",
         "options": [
           [
-            "UPPER CASE",
+            "全大写",
             "UPPERCASE"
           ],
           [
-            "lower case",
+            "全小写",
             "LOWERCASE"
           ],
           [
-            "Title Case",
+            "首字母大写",
             "TITLECASE"
           ]
         ]
@@ -240,22 +240,22 @@
   },
   {
     "type": "text_trim",
-    "message0": "trim spaces from %1 of %2",
+    "message0": "去除空格位置 %1 字符串为 %2",
     "args0": [
       {
         "type": "field_dropdown",
         "name": "MODE",
         "options": [
           [
-            "both sides",
+            "两边",
             "BOTH"
           ],
           [
-            "left side",
+            "左边",
             "LEFT"
           ],
           [
-            "right side",
+            "右边",
             "RIGHT"
           ]
         ]
@@ -272,8 +272,8 @@
     "helpUrl": "https://github.com/google/blockly/wiki/Text#trimming-removing-spaces"
   },
   {
-    "type": "text_print",
-    "message0": "print %1",
+    "type": "text_repeatprint",
+    "message0": "打印 %1",
     "args0": [
       {
         "type": "input_value",
@@ -285,36 +285,5 @@
     "colour": 160,
     "tooltip": "Print the specified text, number or other value.",
     "helpUrl": "https://github.com/google/blockly/wiki/Text#printing-text"
-  },
-  {
-    "type": "text_prompt_ext",
-    "message0": "prompt for %1 with message %2",
-    "args0": [
-      {
-        "type": "field_dropdown",
-        "name": "TYPE",
-        "options": [
-          [
-            "text",
-            "TEXT"
-          ],
-          [
-            "number",
-            "NUMBER"
-          ]
-        ]
-      },
-      {
-        "type": "input_value",
-        "name": "TEXT",
-        "check": "String"
-      }
-    ],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": 160,
-    "tooltip": "Prompt for user for some text or a number.",
-    "helpUrl": "https://github.com/google/blockly/wiki/Text#getting-input-from-the-user",
-    "TODO(#394)": "https://github.com/google/blockly-android/issues/394"
   }
 ]

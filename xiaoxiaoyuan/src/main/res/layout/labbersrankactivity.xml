@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:id="@+id/view_labbers"
+    android:background="@mipmap/bg_all">
+    <!--左边框-->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <!--切换键-->
+        <LinearLayout
+            android:layout_gravity="right"
+            android:layout_marginTop="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!--天梯-->
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/fra_labber"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:background="@mipmap/btn_lab1" />
+            <!--好友榜-->
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/fra_friends"
+                android:background="@mipmap/btn_fra"
+                android:layout_gravity="center"
+                android:gravity="center" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--主体-->
+    <LinearLayout
+        android:id="@+id/ll_all"
+        android:layout_marginTop="5dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@mipmap/bg_register">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+                <LinearLayout
+                    android:layout_weight="4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <!--主要内容区-->
+                    <ListView
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="6dp"
+                        android:id="@+id/lv_ranklistlabbers"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    </ListView>
+                </LinearLayout>
+            <LinearLayout
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--右边框-->
+    <LinearLayout
+        android:gravity="right"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <include layout="@layout/menu"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

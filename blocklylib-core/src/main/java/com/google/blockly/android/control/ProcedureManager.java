@@ -37,7 +37,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Manages procedure definitions, references and names.
+ * Manages procedure definitions, references and names.管理过程定义，引用和名称。
  */
 public class ProcedureManager extends Observable<ProcedureManager.Observer> {
     private static final String TAG = "ProcedureManager";

@@ -89,19 +89,19 @@ public class Block extends Observable<Block.Observer> {
         void onBlockUpdated(Block block, @UpdateState int updateStateMask);
     }
 
-    // These values are immutable once a block is created
+    // These values are immutable once a block is created一旦创建了块，这些值是不可变的。
     private final BlocklyController mController;
     private final BlockFactory mFactory;
     private final String mId;
     private final String mType;
     private boolean mIsShadow;
-    private JSONObject mStyle = null;  // WARNING: Often a mutable object shared by all blocks.
+    private JSONObject mStyle = null;  // WARNING: Often a mutable object shared by all blocks.警告：通常是由所有块共享的可变对象。
 
     // Set by BlockFactory.applyMutator(). May only be set once.
     private Mutator mMutator = null;
     private String mMutation = null;
 
-    // These values can be changed after creating the block
+    // These values can be changed after creating the block创建块后可以更改这些值
     private int mColor = ColorUtils.DEFAULT_BLOCK_COLOR;
     private List<Input> mInputList = Collections.<Input>emptyList();
     private Connection mOutputConnection;
@@ -118,7 +118,7 @@ public class Block extends Observable<Block.Observer> {
     private boolean mDisabled = false;
     private boolean mInputsInline = false;
 
-    // Keep track of whether inputsInline has ever been changed.
+    // Keep track of whether inputsInline has ever been changed.跟踪输入线是否被改变
     private boolean mInputsInlineModified = false;
 
     private String mEventWorkspaceId = null;

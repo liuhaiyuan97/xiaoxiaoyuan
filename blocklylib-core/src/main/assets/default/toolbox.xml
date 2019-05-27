@@ -14,7 +14,7 @@
   -->
 
 <toolbox>
-    <category name="Logic" colour="210">
+    <category name="逻辑" colour="210">
         <block type="controls_if"></block>
         <block type="controls_ifelse"></block>
         <block type="logic_compare"></block>
@@ -24,7 +24,7 @@
         <block type="logic_null"></block>
         <block type="logic_ternary"></block>
     </category>
-    <category name="Loops" colour="120">
+    <category name="循环" colour="120">
         <block type="controls_repeat_ext">
             <value name="TIMES">
                 <shadow type="math_number">
@@ -32,36 +32,10 @@
                 </shadow>
             </value>
         </block>
-        <block type="controls_whileUntil">
-            <value name="BOOL">
-                <shadow type="logic_boolean">
-                    <field name="BOOL">TRUE</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="controls_for">
-            <value name="FROM">
-                <shadow type="math_number">
-                    <field name="NUM">1</field>
-                </shadow>
-            </value>
-            <value name="TO">
-                <shadow type="math_number">
-                    <field name="NUM">10</field>
-                </shadow>
-            </value>
-            <value name="BY">
-                <shadow type="math_number">
-                    <field name="NUM">1</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="controls_forEach"></block>
-        <block type="controls_flow_statements"></block>
     </category>
-    <category name="Math" colour="230">
+    <category name="数学" colour="230">
         <block type="math_number" gap="32">
-            <field name="NUM">123</field>
+            <field name="NUM">1</field>
         </block>
         <block type="math_arithmetic">
             <value name="A">
@@ -72,13 +46,6 @@
             <value name="B">
                 <shadow type="math_number">
                     <field name="NUM">1</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="math_single">
-            <value name="NUM">
-                <shadow type="math_number">
-                    <field name="NUM">9</field>
                 </shadow>
             </value>
         </block>
@@ -148,7 +115,14 @@
         </block>
         <block type="math_random_float"></block>
     </category>
-    <category name="Text" colour="160">
+    <category name="文本" colour="160">
+        <block type="text_repeatprint">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT">abc</field>
+                </shadow>
+            </value>
+        </block>
         <block type="text"></block>
         <block type="text_append">
             <value name="TEXT">
@@ -207,22 +181,8 @@
                 </shadow>
             </value>
         </block>
-        <block type="text_print">
-            <value name="TEXT">
-                <shadow type="text">
-                    <field name="TEXT">abc</field>
-                </shadow>
-            </value>
-        </block>
-        <block type="text_prompt_ext">
-            <value name="TEXT">
-                <shadow type="text">
-                    <field name="TEXT">abc</field>
-                </shadow>
-            </value>
-        </block>
     </category>
-    <category name="Lists" colour="260">
+    <category name="数组" colour="260">
         <block type="lists_create_empty"></block>
         <block type="lists_repeat">
             <value name="NUM">
@@ -261,46 +221,60 @@
                 </block>
             </value>
         </block>
-        <block type="lists_sort"></block>
     </category>
-    <category name="Colour" colour="20">
-        <block type="colour_picker"></block>
-        <block type="colour_random"></block>
-        <block type="colour_rgb">
-            <value name="RED">
-                <shadow type="math_number">
-                    <field name="NUM">100</field>
-                </shadow>
-            </value>
-            <value name="GREEN">
+    <category name="动画" colour="20">
+        <block type="flash_right">
+            <value name="VALUE">
                 <shadow type="math_number">
                     <field name="NUM">50</field>
                 </shadow>
             </value>
-            <value name="BLUE">
+        </block>
+        <block type="flash_left">
+            <value name="VALUE">
+                <shadow type="math_number">
+                    <field name="NUM">50</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="flash_up">
+            <value name="VALUE">
+                <shadow type="math_number">
+                    <field name="NUM">50</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="flash_down">
+            <value name="VALUE">
+                <shadow type="math_number">
+                    <field name="NUM">50</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="flash_bigwidth">
+            <value name="VALUE">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="flash_bigheight">
+            <value name="VALUE">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="flash_returnwidth"></block>
+        <block type="flash_returnheight"></block>
+        <block type="flash_rotate">
+            <value name="VALUE">
                 <shadow type="math_number">
                     <field name="NUM">0</field>
                 </shadow>
             </value>
         </block>
-        <block type="colour_blend">
-            <value name="COLOUR1">
-                <shadow type="colour_picker">
-                    <field name="COLOUR">#ff0000</field>
-                </shadow>
-            </value>
-            <value name="COLOUR2">
-                <shadow type="colour_picker">
-                    <field name="COLOUR">#3333ff</field>
-                </shadow>
-            </value>
-            <value name="RATIO">
-                <shadow type="math_number">
-                    <field name="NUM">0.5</field>
-                </shadow>
-            </value>
-        </block>
     </category>
-    <category name="Variables" colour="330" custom="VARIABLE" />
+    <category name="变量" colour="330" custom="VARIABLE" />
     <!-- <category name="Functions" colour="290" custom="PROCEDURE" /> -->
 </toolbox>

@@ -19,7 +19,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 /**
- * Simple generator callback that logs the generated code to device Log and a Toast.
+ * Simple generator callback that logs the generated code to device Log and a Toast.将生成的代码记录到设备日志和Toast的简单生成器回调。
  */
 public class LoggingCodeGeneratorCallback implements CodeGenerationRequest.CodeGeneratorCallback {
     protected final String mTag;

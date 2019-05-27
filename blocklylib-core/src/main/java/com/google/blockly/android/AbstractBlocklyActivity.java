@@ -15,6 +15,7 @@
 
 package com.google.blockly.android;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -32,6 +33,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.google.blockly.android.codegen.CodeGenerationRequest;
 import com.google.blockly.android.codegen.LanguageDefinition;
@@ -52,7 +54,7 @@ import java.util.List;
 
 /**
  * Base class for a Blockly activity that use a material design style tool bar, and optionally a
- * navigation menu.
+ * navigation menu.使用材质设计样式工具栏和可选导航菜单的Blockly活动的基类
  * <p/>
  * The default layout is filled with a workspace and the toolbox and trash each configured as
  * fly-out views.  Everything below the {@link #mActionBar} can be replaced by overriding
@@ -81,7 +83,7 @@ import java.util.List;
 public abstract class AbstractBlocklyActivity extends AppCompatActivity {
     /**
      * Per the design guidelines, you should show the drawer on launch until the user manually
-     * expands it. This shared preference tracks this.
+     * expands it. This shared preference tracks this.在设计指南中，您应该在启动时显示抽屉，直到用户手动展开它。 这个共享偏好跟踪这个
      */
     private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
 
@@ -92,7 +94,7 @@ public abstract class AbstractBlocklyActivity extends AppCompatActivity {
     protected ActionBar mActionBar;
     protected DrawerLayout mDrawerLayout;
 
-    // These two may be null if {@link #onCreateAppNavigationDrawer} returns null.
+    // These two may be null if {@link #onCreateAppNavigationDrawer} returns null.如果{@link #onCreateAppNavigationDrawer}返回null，则这两个可能为null。
     protected View mNavigationDrawer;
     protected ActionBarDrawerToggle mDrawerToggle;
 
@@ -176,7 +178,7 @@ public abstract class AbstractBlocklyActivity extends AppCompatActivity {
      * {@link #getWorkspaceSavePath()}.
      */
     public void onSaveWorkspace() {
-        mBlocklyActivityHelper.saveWorkspaceToAppDirSafely(getWorkspaceSavePath());
+      mBlocklyActivityHelper.saveWorkspaceToAppDirSafely(getWorkspaceSavePath());
     }
 
     /**
@@ -185,7 +187,8 @@ public abstract class AbstractBlocklyActivity extends AppCompatActivity {
      * {@link #getWorkspaceSavePath()}.
      */
     public void onLoadWorkspace() {
-        mBlocklyActivityHelper.loadWorkspaceFromAppDirSafely(getWorkspaceSavePath());
+        Toast.makeText(this,"已保存",Toast.LENGTH_SHORT).show();
+        //mBlocklyActivityHelper.loadWorkspaceFromAppDirSafely(getWorkspaceSavePath());
     }
 
     /**

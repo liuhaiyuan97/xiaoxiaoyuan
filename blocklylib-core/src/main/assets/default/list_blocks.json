@@ -1,7 +1,7 @@
 [
   {
     "type": "lists_create_empty",
-    "message0": "create empty list",
+    "message0": "创建空数组",
     "output": "Array",
     "colour": 260,
     "tooltip": "Returns a list, of length 0, containing no data records.",
@@ -9,7 +9,7 @@
   },
   {
     "type": "lists_repeat",
-    "message0": "create list with item %1 repeated %2 times",
+    "message0": "创建一个每个元素都一样数组，值为 %1 重复 %2 次",
     "args0": [
       {
         "type": "input_value",
@@ -29,7 +29,7 @@
   },
   {
     "type": "lists_length",
-    "message0": "length of %1",
+    "message0": "数组长度 %1",
     "args0": [
       {
         "type": "input_value",
@@ -44,7 +44,7 @@
   },
   {
     "type": "lists_isEmpty",
-    "message0": "%1 is empty",
+    "message0": "%1 数组是空",
     "args0": [
       {
         "type": "input_value",
@@ -60,7 +60,7 @@
   },
   {
     "type": "lists_indexOf",
-    "message0": "in list %1 find %2 occurence of item %3",
+    "message0": "在数组 %1 中寻找第一次 %2 出现值为 %3 的位置",
     "args0": [
       {
         "type": "input_value",
@@ -71,8 +71,8 @@
         "type": "field_dropdown",
         "name": "END",
         "options": [
-          ["first", "FIRST"],
-          ["last", "LAST"]
+          ["从前往后", "FIRST"],
+          ["从后往前", "LAST"]
         ]
       },
       {
@@ -89,7 +89,7 @@
   },
   {
     "type": "lists_getIndex",
-    "message0": "in list %1 %2 %3 %4",
+    "message0": "在数组 %1 中 %2 %3 第 %4 个",
     "args0": [
       {
         "type": "input_value",
@@ -100,16 +100,16 @@
         "type": "field_dropdown",
         "name": "MODE",
         "options": [
-          ["get", "GET"],
-          ["get and remove", "GET_REMOVE"]
+          ["获取", "GET"],
+          ["获取并删除", "GET_REMOVE"]
         ]
       },
       {
         "type": "field_dropdown",
         "name": "WHERE",
         "options": [
-          ["#", "FROM_START"],
-          ["# from end", "FROM_END"]
+          ["从前开始", "FROM_START"],
+          ["从后开始", "FROM_END"]
         ]
       },
       {
@@ -128,7 +128,7 @@
   },
   {
     "type": "lists_setIndex",
-    "message0": "in list %1 %2 %3 %4 as %5",
+    "message0": "在数组 %1 中 %2 %3 修改（增加）的位置%4 改为（增加） %5",
     "args0": [
       {
         "type": "input_value",
@@ -139,16 +139,16 @@
         "type": "field_dropdown",
         "name": "MODE",
         "options": [
-          ["set", "SET"],
-          ["insert at","INSERT"]
+          ["修改", "SET"],
+          ["增加","INSERT"]
         ]
       },
       {
         "type": "field_dropdown",
         "name": "WHERE",
         "options": [
-          ["#", "FROM_START"],
-          ["# from end","FROM_END"]
+          ["从前往后", "FROM_START"],
+          ["从后往前","FROM_END"]
         ]
       },
       {
@@ -171,7 +171,7 @@
   },
   {
     "type": "lists_getSublist",
-    "message0": "in list %1 get sub-list from %2 %3 to %4 %5",
+    "message0": "在数组 %1  %2 下标为 %3 到 %4 下标为%5（不包含）",
     "args0": [
       {
         "type": "input_value",
@@ -182,8 +182,8 @@
         "type": "field_dropdown",
         "name": "WHERE1",
         "options": [
-          ["#", "FROM_START"],
-          ["# from end","FROM_END"]
+          ["从前往后", "FROM_START"],
+          ["从后往前","FROM_END"]
         ]
       },
       {
@@ -195,8 +195,8 @@
         "type": "field_dropdown",
         "name": "WHERE2",
         "options": [
-          ["#", "FROM_START"],
-          ["# from end", "FROM_END"]
+          ["从前往后", "FROM_START"],
+          ["从后往前", "FROM_END"]
         ]
       },
       {
@@ -209,37 +209,5 @@
     "output": "Array",
     "colour": 260,
     "tooltip": "Creates a copy of the specified portion of a list."
-  },
-  {
-    "type": "lists_sort",
-    "message0": "sort %1 %2 %3",
-    "args0": [
-      {
-        "type": "field_dropdown",
-        "name": "TYPE",
-        "options": [
-          ["numeric","NUMERIC"],
-          ["alphabetic", "TEXT"],
-          ["alphabetic, ignore case", "IGNORE_CASE"]
-        ]
-      },
-      {
-        "type": "field_dropdown",
-        "name": "DIRECTION",
-        "options": [
-          ["ascending", "1"],
-          ["descending", "-1"]
-        ]
-      },
-      {
-        "type": "input_value",
-        "name": "LIST",
-        "check": "Array"
-      }
-    ],
-    "output": "Array",
-    "colour": 260,
-    "tooltip": "Sort a copy of a list.",
-    "helpUrl": "https://github.com/google/blockly/wiki/Lists#sorting-a-list"
   }
 ]
