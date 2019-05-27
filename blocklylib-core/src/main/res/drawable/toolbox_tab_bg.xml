@@ -4,5 +4,5 @@
         android:drawable="@drawable/toolbox_tab_bg_selected"
         />
     <item
-        android:drawable="@drawable/toolbox_tab_bg_normal"/>
+        android:drawable="@drawable/ic_drawer"/>
 </selector>

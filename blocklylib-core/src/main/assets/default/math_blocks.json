@@ -1,7 +1,7 @@
 [
   {
     "type": "math_number",
-    "message0": "%1",
+    "message0": "  %1",
     "args0": [
       {
         "type": "field_number",
@@ -62,35 +62,8 @@
     "helpUrl": "https://en.wikipedia.org/wiki/Arithmetic"
   },
   {
-    "type": "math_single",
-    "message0": "%1 %2",
-    "args0": [
-      {
-        "type": "field_dropdown",
-        "name": "OP",
-        "options": [
-          ["square root", "ROOT"],
-          ["absolute", "ABS"],
-          ["-", "NEG"],
-          ["ln", "LN"],
-          ["log10", "LOG10"],
-          ["e^", "EXP"],
-          ["10^", "POW10"]
-        ]
-      },
-      {
-        "type": "input_value",
-        "name": "NUM",
-        "check": "Number"
-      }
-    ],
-    "output": "Number",
-    "colour": 230,
-    "helpUrl": "https://en.wikipedia.org/wiki/Square_root"
-  },
-  {
     "type": "math_trig",
-    "message0": "%1 %2",
+    "message0": "三角函数 %1 %2",
     "args0": [
       {
         "type": "field_dropdown",
@@ -116,7 +89,7 @@
   },
   {
     "type": "math_constant",
-    "message0": "%1",
+    "message0": "常量 %1",
     "args0": [
       {
         "type": "field_dropdown",
@@ -142,7 +115,7 @@
   },
   {
     "type": "math_number_property",
-    "message0": "%1 is %2",
+    "message0": "%1 是 %2",
     "args0": [
       {
         "type": "input_value",
@@ -153,13 +126,8 @@
         "type": "field_dropdown",
         "name": "PROPERTY",
         "options": [
-          ["even", "EVEN"],
-          ["odd", "ODD"],
-          ["prime", "PRIME"],
-          ["whole", "WHOLE"],
-          ["positive", "POSITIVE"],
-          ["negative", "NEGATIVE"],
-          ["divisible by", "DIVISIBLE_BY"]
+          ["偶数", "EVEN"],
+          ["奇数", "ODD"]
         ]
       }
     ],
@@ -172,7 +140,7 @@
   },
   {
     "type": "math_change",
-    "message0": "change %1 by %2",
+    "message0": "改变变量 %1 的值为 %2",
     "args0": [
       {
         "type": "field_variable",
@@ -192,15 +160,15 @@
   },
   {
     "type": "math_round",
-    "message0": "%1 %2",
+    "message0": "四舍五入 %1 %2",
     "args0": [
       {
         "type": "field_dropdown",
         "name": "OP",
         "options": [
-          ["round", "ROUND"],
-          ["round up", "ROUNDUP"],
-          ["round down", "ROUNDDOWN"]
+          ["标准四舍五入", "ROUND"],
+          ["向上舍入", "ROUNDUP"],
+          ["向下舍入", "ROUNDDOWN"]
         ]
       },
       {
@@ -216,7 +184,7 @@
   },
   {
     "type": "math_modulo",
-    "message0": "remainder of %1 ÷ %2",
+    "message0": "对 %1 取 %2 的余数",
     "args0": [
       {
         "type": "input_value",
@@ -237,7 +205,7 @@
   },
   {
     "type": "math_constrain",
-    "message0": "constrain %1 low %2 high %3",
+    "message0": "取 %1 和 %2的最大值 再和 %3 比较，取最小值",
     "args0": [
       {
         "type": "input_value",
@@ -263,7 +231,7 @@
   },
   {
     "type": "math_random_int",
-    "message0": "random integer from %1 to %2",
+    "message0": "取随机整数从 %1 到 %2",
     "args0": [
       {
         "type": "input_value",
@@ -284,7 +252,7 @@
   },
   {
     "type": "math_random_float",
-    "message0": "random fraction",
+    "message0": "取0到1的随机小数",
     "output": "Number",
     "colour": 230,
     "tooltip": "Return a random fraction between 0.0 (inclusive) and 1.0 (exclusive).",

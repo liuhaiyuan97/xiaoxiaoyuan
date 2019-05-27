@@ -29,14 +29,15 @@ import java.io.IOException;
 /**
  * {@code ClipDataTransformer} is an interface to help transform {@link Block} data and view objects
  * into ClipData, and back. This is used for drag-and-drop operations and copy/paste actions.
+ * 是一个接口，用于帮助将数据和视图对象转换为ClipData并返回。这用于拖放操作和复制/粘贴操作。
  * <p/>
- * Every application needs one implementation. Most applications will be content with
+ * Every application needs one implementation. Most applications will be content with每个应用程序都需要一个实现。大多数应用程序都会满足
  * {@link SingleMimeTypeClipDataHelper}.
  */
 public interface BlockClipDataHelper {
     /**
      * Constructs a new populated {@link ClipData} using the information from a {@link PendingDrag}.
-     *
+     *使用{@link PendingDrag}中的信息构建新的填充的{@link ClipData}。
      * @param pendingDrag The source of clip
      * @return A new {@link ClipData} representing the dragged or copied {@link BlockGroup}.
      */

@@ -72,11 +72,11 @@ import java.util.List;
 
 /**
  * Controller to coordinate the state among all the major Blockly components: Workspace, Toolbox,
- * Trash, models, and views.
+ * Trash, models, and views.控制器，用于协调所有主要Blockly组件之间的状态：工作区、工具箱、垃圾、模型和视图
  * <p/>
  * All calls are expected to be called in the main thread/looper, because they create events that
  * are processed immediately. Several methods will throw an IllegalStateExceptions if called on a
- * different thread.
+ * different thread.所有调用都希望在主线程/循环器中调用，因为它们创建了立即处理的事件。如果在不同的线程上调用，一些方法将抛出非法状态异常。
  */
 public class BlocklyController {
     private static final String TAG = "BlocklyController";
@@ -89,16 +89,16 @@ public class BlocklyController {
      */
     public interface EventsCallback {
         /**
-         * @return The bitmask of event types handled by this callback.  Must not change.
+         * @return The bitmask of event types handled by this callback.  Must not change.此回调处理的事件类型的位掩码。不得改变。
          */
         @BlocklyEvent.EventType int getTypesBitmask();
 
         /**
-         * Called when a group of events are fired and at least one event is of a type specified by
+         * Called when a group of events are fired and at least one event is of a type specified by当触发一组事件并且至少一个事件具有以下指定的类型时调用
          * {@link #getTypesBitmask}. While events in the group will always include at least one
-         * event of the requested type, the group may also contain other events.
+         * event of the requested type, the group may also contain other events.虽然组中的事件总是包括至少一个请求类型的事件，但是组也可以包含其他事件。
          *
-         * @param events List of all the events in this group.
+         * @param events List of all the events in this group.本组所有事件的列表。
          */
         void onEventGroup(List<BlocklyEvent> events);
     }
@@ -114,7 +114,7 @@ public class BlocklyController {
     private final ConnectionManager mConnectionManager;
     private final ArrayList<EventsCallback> mListeners = new ArrayList<>();
 
-    // Whether the current call stack is actively executing code intended to group and fire events.
+    // Whether the current call stack is actively executing code intended to group and fire events.当前调用堆栈是否正在积极地执行用于分组和触发事件的代码。
     // See groupAndFireEvents(Runnable)
     private boolean mInEventGroup = false;
 
@@ -133,7 +133,7 @@ public class BlocklyController {
     @VisibleForTesting
     FlyoutController mFlyoutController;
 
-    // For use in bumping neighbors; instance variable only to avoid repeated allocation.
+    // For use in bumping neighbors; instance variable only to avoid repeated allocation.实例变量仅用于避免重复分配
     private final ArrayList<Connection> mTempConnections = new ArrayList<>();
 
     private View.OnClickListener mDismissClickListener = new View.OnClickListener() {
@@ -149,7 +149,7 @@ public class BlocklyController {
             BlockView touchedView = pendingDrag.getTouchedBlockView();
 
             // If a shadow or other undraggable block is touched, and it is attached to a draggable
-            // parent block, drag that block instead.
+            // parent block, drag that block instead.如果触摸到阴影或其他不可拆卸的块，并且该块被附加到可拖动的父块，则改为拖动该块。
             final BlockView activeTouchedView = mHelper.getNearestActiveView(touchedView);
             if (activeTouchedView == null) {
                 Log.i(TAG, "User touched a stack of blocks that may not be dragged");
@@ -163,11 +163,11 @@ public class BlocklyController {
                     extractBlockAsRoot(activeTouchedView.getBlock());
 
                     // Since this block was already on the workspace, the block's position should
-                    // have been assigned correctly during the most recent layout pass.
+                    // have been assigned correctly during the most recent layout pass.由于此块已经在工作空间中，所以在最近的布局传递期间应该正确地分配了块的位置。
                     BlockGroup bg = mHelper.getRootBlockGroup(activeTouchedView);
                     bg.bringToFront();
 
-                    // Measure and layout the block group to get the correct touch offset.
+                    // Measure and layout the block group to get the correct touch offset.测量和布局块组以获得正确的触摸偏移
                     bg.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
                     bg.layout(0, 0, bg.getMeasuredWidth(), bg.getMeasuredHeight());
 
@@ -190,14 +190,14 @@ public class BlocklyController {
     private final BlockTouchHandler mTouchHandler;
 
     /**
-     * Creates a new Controller with Workspace and WorkspaceHelper. Most controllers will require
+     * Creates a new Controller with Workspace and WorkspaceHelper. Most controllers will require创建一个带有工作区和工作空间帮助器的新控制器。大多数控制器都需要
      * a {@link BlockViewFactory}, but headless (i.e. viewless) controllers are allowed, where it
-     * could be null.
+     * could be null.但是允许无头（即无视像）控制器，在那里它可以是空的。
      *
-     * @param context Android context, such as an Activity.
-     * @param blockModelFactory Factory used to create new Blocks.
-     * @param workspaceHelper Helper functions for workspace views and device resolution.
-     * @param blockViewFactory Factory used to construct block views for this app.
+     * @param context Android context, such as an Activity.Android上下文，比如一个活动。
+     * @param blockModelFactory Factory used to create new Blocks.用于创建新块的工厂
+     * @param workspaceHelper Helper functions for workspace views and device resolution.工作区视图和设备分辨率的辅助函数
+     * @param blockViewFactory Factory used to construct block views for this app.工厂用来为这个应用程序构建块视图
      */
     private BlocklyController(Context context, BlockFactory blockModelFactory,
                               WorkspaceHelper workspaceHelper, BlockClipDataHelper clipHelper,
@@ -223,6 +223,7 @@ public class BlocklyController {
         mViewFactory = blockViewFactory;
 
         // mHelper, mModelFactory, and mViewFactory must be initialized before mClipHelper.
+        //必须在Mclipelelp之前初始化MelHelp、MMealFieldMand和MVIEW工厂。
         mClipHelper = clipHelper;
 
         mWorkspace = new Workspace(mContext, this, mModelFactory);
@@ -250,7 +251,7 @@ public class BlocklyController {
     }
 
     /**
-     * Connects a WorkspaceFragment to this controller.
+     * Connects a WorkspaceFragment to this controller.将WorkStudio片段连接到该控制器
      *
      * @param workspaceFragment The fragment that contains the main workspace.
      */
@@ -274,10 +275,11 @@ public class BlocklyController {
     /**
      * Connects a {@link BlockListUI} and optional {@link CategorySelectorUI} to
      * this controller, so the user can drag new blocks into the attached
+     * 将{@link BlockListUI}和可选的{@link CategorySelectorUI}连接到此控制器，以便用户可以将新块拖放到所附的
      * {@link WorkspaceFragment}.
      *
-     * @param toolbox The flyout for displaying toolbox blocks.
-     * @param categoryUi Optional ui for displaying toolbox categories.
+     * @param toolbox The flyout for displaying toolbox blocks.用于显示工具箱块的弹出窗口。
+     * @param categoryUi Optional ui for displaying toolbox categories.用于显示工具箱类别的可选UI
      */
     public void setToolboxUi(BlockListUI toolbox,
                              @Nullable CategorySelectorUI categoryUi) {
@@ -290,7 +292,7 @@ public class BlocklyController {
 
     /**
      * Connects a {@link BlockListUI} for the trash to this controller.
-     *
+     *将垃圾的{@ Link BuffListI}连接到这个控制器
      * @param trashUi
      */
     public void setTrashUi(@Nullable BlockListUI trashUi) {
@@ -302,7 +304,7 @@ public class BlocklyController {
     }
 
     /**
-     * Assigns the view used for opening/closing the trash.
+     * Assigns the view used for opening/closing the trash.Assigns the view used for opening/closing the trash
      *
      * @param trashIcon The trash icon for dropping blocks.
      */
@@ -312,9 +314,9 @@ public class BlocklyController {
 
     /**
      * Sets the callback to notify when the user requests a variable change, such as deleting or
-     * renaming a variable.
+     * renaming a variable.设置回调以通知用户何时请求更改变量，如删除或重命名变量。
      *
-     * @param variableCallback The callback to notify when a variable is being deleted.
+     * @param variableCallback The callback to notify when a variable is being deleted.回调以通知变量何时被删除。
      */
     public void setVariableCallback(VariableCallback variableCallback) {
         mVariableCallback = variableCallback;
@@ -326,16 +328,16 @@ public class BlocklyController {
     }
 
     /**
-     * @return The {@link Dragger} managing the drag behavior in connected views.
+     * @return The {@link Dragger} managing the drag behavior in connected views.{@link Dragger}管理连接视图中的拖动行为。
      */
     public Dragger getDragger() {
         return mDragger;
     }
 
     /**
-     * Loads the toolbox contents from an XML resource file.
+     * Loads the toolbox contents from an XML resource file.从XML资源文件加载工具箱内容。
      *
-     * @param toolboxJsonResId The resource id of JSON file (should be a raw resource file).
+     * @param toolboxJsonResId The resource id of JSON file (should be a raw resource file).JSON文件的资源ID（应该是原始资源文件）
      */
     public void loadToolboxContents(int toolboxJsonResId) throws BlockLoadingException {
         mWorkspace.loadToolboxContents(toolboxJsonResId);
@@ -343,12 +345,12 @@ public class BlocklyController {
     }
 
     /**
-     * Loads the toolbox contents from a XML string.
+     * Loads the toolbox contents from a XML string.从XML字符串加载工具箱内容。
      *
      * @param toolboxJsonString The JSON source of the set of blocks or block groups to show in the
-     *                          toolbox.
+     *                          toolbox.在工具箱中显示的一组块或块组的JSON源。
      * @throws BlockLoadingException If toolbox was not loaded. May wrap an IOException or another
-     *                               BlockLoadingException.
+     *                               BlockLoadingException.如果没有加载工具箱。可以包装IO或另一个异常
      */
     public void loadToolboxContents(String toolboxJsonString) throws BlockLoadingException {
         mWorkspace.loadToolboxContents(toolboxJsonString);
@@ -356,10 +358,10 @@ public class BlocklyController {
     }
 
     /**
-     * Loads the toolbox contents from a XML input stream.
+     * Loads the toolbox contents from a XML input stream.从XML输入流加载工具箱内容。
      *
      * @param toolboxJsonStream A stream of the JSON source of the set of blocks or block groups to
-     *                          show in the toolbox.
+     *                          show in the toolbox.要在工具箱中显示的一组块或块组的JSON源流
      */
     public void loadToolboxContents(InputStream toolboxJsonStream)
             throws IOException, BlockLoadingException {
@@ -369,11 +371,11 @@ public class BlocklyController {
 
     /**
      * Reads the workspace in from a XML stream. This will clear the workspace and replace it with
-     * the contents of the xml.
+     * the contents of the xml.从XML流中读取工作区。这将清除工作空间并将其替换为XML内容
      *
-     * @param workspaceXmlString The XML source string to read from.
+     * @param workspaceXmlString The XML source string to read from.要读取的XML源字符串
      * @throws BlockLoadingException If workspace was not loaded. May wrap an IOException or another
-     *                               BlockLoadingException.
+     *                               BlockLoadingException.如果没有加载工作区。可以包装IOExtor或另一个BoeBooLoad异常
      */
     public void loadWorkspaceContents(String workspaceXmlString) throws BlockLoadingException {
         mWorkspace.loadWorkspaceContents(workspaceXmlString);
@@ -382,10 +384,10 @@ public class BlocklyController {
 
     /**
      * Reads the workspace in from a XML stream. This will clear the workspace and replace it with
-     * the contents of the xml.
+     * the contents of the xml.从XML流中读取工作区。这将清除工作空间并将其替换为XML内容
      *
-     * @param workspaceXmlStream The input stream to read from.
-     * @return True if successful. Otherwise, false with error logged.
+     * @param workspaceXmlStream The input stream to read from.要从中读取的输入流。
+     * @return True if successful. Otherwise, false with error logged.如果真的成功了。其他突出，虚假与误差。
      */
     public void loadWorkspaceContents(InputStream workspaceXmlStream) throws BlockLoadingException {
         mWorkspace.loadWorkspaceContents(workspaceXmlStream);
@@ -394,10 +396,10 @@ public class BlocklyController {
 
     /**
      * Saves a snapshot of current workspace contents to a temporary cache file, and saves the
-     * filename to the instance state bundle.
-     * @param mSavedInstanceState The output Bundle to write the state to.
+     * filename to the instance state bundle.将当前工作区内容的快照保存到临时缓存文件，并将文件名保存到实例状态包。
+     * @param mSavedInstanceState The output Bundle to write the state to.写入状态的输出束
      * @return True if all values were written successfully to the bundle. Otherwise, false with
-     *         errors written to log.
+     *         errors written to log.如果所有值都成功地写入包，则为true。否则，将错误写入日志
      */
     public boolean onSaveSnapshot(Bundle mSavedInstanceState) {
         boolean success;
@@ -428,12 +430,12 @@ public class BlocklyController {
 
     /**
      * Loads a Workspace state from an Android {@link Bundle}, previous saved in
-     * {@link #onSaveSnapshot(Bundle)}.
+     * {@link #onSaveSnapshot(Bundle)}.从Android{@link Bundle}加载工作区状态，之前保存在{@link#onSaveSnap.(Bundle)}。
      *
      * @param savedInstanceState The activity state Bundle passed into {@link Activity#onCreate} or
      *                           {@link Activity#onRestoreInstanceState}.
-     * @return True if a Blockly state was found and successfully loaded into the Controller.
-     *         Otherwise, false.
+     * @return True if a Blockly state was found and successfully loaded into the Controller.如果发现一个阻塞状态并成功加载到控制器中，则为真。
+     *         Otherwise, false.否则，假
      */
     public boolean onRestoreSnapshot(@Nullable Bundle savedInstanceState) {
 
@@ -444,7 +446,7 @@ public class BlocklyController {
         }
         byte[] bytes = blocklyState.getByteArray(SERIALIZED_WORKSPACE_KEY);
         if (bytes == null) {
-            // Ignore all other workspace variables.
+            // Ignore all other workspace variables.忽略所有其他工作区变量
             return false;
         }
 
@@ -493,18 +495,18 @@ public class BlocklyController {
     }
 
     /**
-     * Closes any open flyouts if they are closeable.
+     * Closes any open flyouts if they are closeable.关闭任何打开的flyouts，如果它们是可关闭的。
      *
-     * @return True if any flyouts were closed.
+     * @return True if any flyouts were closed.如果有任何flyouts关闭的话
      */
     public boolean closeFlyouts() {
         return mFlyoutController.closeFlyouts();
     }
 
     /**
-     * Registers a callback for Blockly events.
+     * Registers a callback for Blockly events.注册阻塞事件的回调
      *
-     * @param callback The callback to add.
+     * @param callback The callback to add.要添加的回调
      */
     public void addCallback(EventsCallback callback) {
         if (!mListeners.contains(callback)) {
@@ -514,10 +516,10 @@ public class BlocklyController {
     }
 
     /**
-     * Removes an events callback.
+     * Removes an events callback.移除事件回调
      *
-     * @param callback The callback to remove.
-     * @return True if the callback was found and removed.
+     * @param callback The callback to remove.要删除的回调
+     * @return True if the callback was found and removed.如果找到并移除回调，则为True
      */
     public boolean removeCallback(EventsCallback callback) {
         boolean found = mListeners.remove(callback);
@@ -528,7 +530,7 @@ public class BlocklyController {
     }
 
     /**
-     * @return A count of registered {@link EventsCallback}s.
+     * @return A count of registered {@link EventsCallback}s.A count of registered
      */
     @VisibleForTesting
     public int getCallbackCount() {
@@ -541,8 +543,10 @@ public class BlocklyController {
      * {@link EventsCallback}s at the completion of the code. If a {@code groupAndFireEvents()} call
      * is already in progress, the new code will integrate into that event group. This will catch
      * side-effect changes, such as block bumps or validation updates.
+     * 运行一段代码（立即），以便将由更改引起的所有事件收集到单个事件组中，并在代码完成时将代码中生成的事件组通知到{@link EventsCallback}s。
+     * 如果{@code groupAndFireEvents()}调用已经在进行中，则新代码将集成到该事件组中。这将捕获副作用变化，例如块凸点或验证更新。
      * <p/>
-     * {@code groupAndFireEvents()} must be called from the main thread/looper.
+     * {@code groupAndFireEvents()} must be called from the main thread/looper.必须从主线程/套接字调用{@代码组BuffFieldEvsServer（）}
      */
     public void groupAndFireEvents(final Runnable runnable) {
         if (mMainLooper != Looper.myLooper()) {
@@ -550,10 +554,10 @@ public class BlocklyController {
                     "groupAndFireEvents() must be called from main thread.");
         }
         if (mInEventGroup) {
-            // We are already within an event group.  Execute immediately.
+            // We are already within an event group.  Execute immediately.我们已经在一个事件组内了。立即执行。
             runnable.run();
         } else {
-            // Start a new event group, firing events when done.
+            // Start a new event group, firing events when done.启动新的事件组，在完成事件后触发事件
             try {
                 mInEventGroup = true;
                 runnable.run();
@@ -567,10 +571,11 @@ public class BlocklyController {
     /**
      * Adds {@code event} to the list of pending events. If this is called outside of a call to
      * {@link #groupAndFireEvents}, the event will be fired immediately, as its own group.
+     * 将{@code event}添加到挂起事件的列表中。如果在对{@link#groupAndFireEvents}的调用之外调用它，则事件将立即作为它自己的组被触发。
      * <p/>
-     * {@code addPendingEvent()} must be called from the main thread/looper.
+     * {@code addPendingEvent()} must be called from the main thread/looper.{@code addPendingEvent()}必须从主线程/套接字调用。
      *
-     * @param event The event to append.
+     * @param event The event to append.追加事件
      */
     public void addPendingEvent(BlocklyEvent event) {
         if (mMainLooper != Looper.myLooper()) {
@@ -584,7 +589,7 @@ public class BlocklyController {
         mPendingEventsMask |= event.getTypeId();
 
         if (!mInEventGroup) {
-            // Outside a prior event group.  Fire immediately.
+            // Outside a prior event group.  Fire immediately.在先验事件组之外。立即执行
             firePendingEvents();
         }
     }
@@ -592,8 +597,8 @@ public class BlocklyController {
     /**
      * Adds the provided block to the list of root blocks.  If the controller has an initialized
      * {@link WorkspaceView}, it will also create corresponding views.
-     *
-     * @param block The {@link Block} to add to the workspace.
+     *将提供的块添加到根块的列表中。如果控制器具有初始化的{@link WorkspaceView}，那么它还将创建相应的视图。
+     * @param block The {@link Block} to add to the workspace.{@link Block}以添加到工作区。
      */
     public BlockGroup addRootBlock(final Block block) {
         if (block.getParentBlock() != null) {
@@ -613,10 +618,10 @@ public class BlocklyController {
     }
 
     /**
-     * Takes a block, and adds it to the root blocks, disconnecting previous or output connections,
-     * if previously connected.  No action if the block was already a root block.
+     * Takes a block, and adds it to the root blocks, disconnecting previous or output connections,获取一个块，并将其添加到根块，断开先前的连接或输出连接，
+     * if previously connected.  No action if the block was already a root block.如果先前连接。如果块已经是根块，则不执行任何操作。
      *
-     * @param block {@link Block} to extract as a root block in the workspace.
+     * @param block {@link Block} to extract as a root block in the workspace.{@link Block}作为工作区中的根块提取。
      */
     public void extractBlockAsRoot(final Block block) {
         groupAndFireEvents(new Runnable() {
@@ -633,11 +638,11 @@ public class BlocklyController {
      * dragger for the view.</li> <li>Recursively initialize views for all the blocks in the model
      * and add them to the view.</li> </ul>
      *
-     * @param wv The root workspace view to add to.
+     * @param wv The root workspace view to add to.要添加到的根工作区视图
      */
     public void initWorkspaceView(final WorkspaceView wv) {
         if (mVirtualWorkspaceView != null) {
-            // Clear the old view's references so we don't get unwanted events.
+            // Clear the old view's references so we don't get unwanted events.清除旧视图的引用，这样我们就不会得到不必要的事件。
             mVirtualWorkspaceView.setOnClickListener(null);
         }
         mVirtualWorkspaceView = (VirtualWorkspaceView) wv.getParent();
@@ -654,7 +659,7 @@ public class BlocklyController {
     }
 
     /**
-     * Recursively initialize views for all the blocks in the model and add them to the view.
+     * Recursively initialize views for all the blocks in the model and add them to the view.递归地初始化模型中所有块的视图，并将它们添加到视图中
      */
     public void initBlockViews() {
         if (mWorkspaceView != null) {
@@ -669,10 +674,10 @@ public class BlocklyController {
     }
 
     /**
-     * Returns the {@link VariableInfo} metadata about a specific variable.
+     * Returns the {@link VariableInfo} metadata about a specific variable.返回关于特定变量的{@link VariableInfo}元数据。
      * @param variableName The variable queried.
      * @return The VariableInfo for {@code variableName}, or null if the name does not map to an
-     *         existing variable.
+     *         existing variable.{@code variableName}的VariableInfo，如果名称没有映射到现有变量，则为空。
      */
     @Nullable
     public VariableInfo getVariableInfo(String variableName) {
@@ -681,10 +686,10 @@ public class BlocklyController {
 
     /**
      * Create a new variable with a given name. If a variable with the same name already exists the
-     * name will be modified to be unique.
+     * name will be modified to be unique.用给定的名称创建一个新的变量。如果具有相同名称的变量已经存在，则名称将被修改为唯一的。
      *
-     * @param variable The desired name of the variable to create.
-     * @return The actual variable name that was created.
+     * @param variable The desired name of the variable to create.要创建的变量的期望名称。
+     * @return The actual variable name that was created.创建的实际变量名
      */
     public String addVariable(final String variable) {
         final String[] resultVarName = { null };
@@ -701,10 +706,11 @@ public class BlocklyController {
      * Attempt to create a new variable. If a {@link VariableCallback} is set
      * {@link VariableCallback#onCreateVariable(String)} will be called to check if the creation is
      * allowed. If a variable with the same name already exists the name will be modified to be
-     * unique.
+     * unique.尝试创建一个新的变量。如果设置{@link VariableCallback}，将调用{@link VariableCallback#onCreateVariable(String)}以检查是否允许创建
+     * 如果具有相同名称的变量已经存在，则名称将被修改为唯一的。
      *
-     * @param variable The desired name of the variable to create.
-     * @return The variable name that was created or null if creation was not allowed.
+     * @param variable The desired name of the variable to create.要创建的变量的期望名称
+     * @return The variable name that was created or null if creation was not allowed.如果不允许创建，则创建的变量名或NULL
      */
     public String requestAddVariable(final String variable) {
         final String resultVarName[] = {null};
@@ -718,11 +724,11 @@ public class BlocklyController {
     }
 
     /**
-     * Delete a variable from the workspace and remove all blocks using that variable.
+     * Delete a variable from the workspace and remove all blocks using that variable.从工作区中删除变量并使用该变量删除所有块
      *
-     * @param variable The variable to delete.
+     * @param variable The variable to delete.要删除的变量。
      *
-     * @return True if the variable existed and was deleted, false otherwise.
+     * @return True if the variable existed and was deleted, false otherwise.如果变量存在并已删除，则为true，否则为false。
      */
     public boolean deleteVariable(final String variable) {
         final boolean resultSuccess[] = {false};
@@ -739,6 +745,9 @@ public class BlocklyController {
      * Attempt to delete a variable from the workspace. If a {@link VariableCallback} is set
      * {@link VariableCallback#onDeleteVariable} will be called to check if deletion is
      * allowed.
+     *
+     * 尝试从工作区中删除变量。如果设置{@linkVariableCallback}{@linkVariableCallback#onDeleteVariable}，
+     * 将调用{@linkVariableCallback#onDeleteVariable}以检查是否允许删除。
      *
      * @param variable The variable to delete.
      * @return True if the variable existed and was deleted, false otherwise.
@@ -758,11 +767,11 @@ public class BlocklyController {
      * Renames a variable in the workspace. If a variable already exists with the new name the
      * renamed variable will be modified to be unique. All fields that reference the renamed
      * variable will be updated to the new name.
+     *重命名工作区中的变量。如果新名称的变量已经存在，则重命名的变量将被修改为唯一的。引用重命名变量的所有字段将被更新为新名称。
+     * @param variable The variable to rename.重命名变量
+     * @param newVariable The new name for the variable.变量的新名称
      *
-     * @param variable The variable to rename.
-     * @param newVariable The new name for the variable.
-     *
-     * @return The new variable name that was saved.
+     * @return The new variable name that was saved.保存的新变量名
      */
     public String renameVariable(final String variable, final String newVariable) {
         final String resultVarName[] = {null};
@@ -780,7 +789,7 @@ public class BlocklyController {
      * {@link VariableCallback#onRenameVariable(String, String)} will be called before renaming. If
      * a variable already exists with the new name the renamed variable will be modified to be
      * unique.
-     *
+     *重命名工作区中的变量。如果设置{@link VariableCallback}.{@link VariableCallback#onRenameVariable(String,String)}则在重命名之前调用。如果新名称的变量已经存在，则重命名的变量将被修改为唯一的。
      * @param variable The variable to rename.
      * @param newVariable The new name for the variable.
      *
@@ -803,12 +812,12 @@ public class BlocklyController {
      * connected on the given connection; usually a root block. If another block is in the way
      * of making the connection (occupies the required workspace location), that block will be
      * bumped out of the way.
-     * <p>
+     * <p>将块连接到另一个块的特定连接。该块不能已经在给定连接上连接；通常是根块。如果另一个块正在进行连接（占据所需的工作空间位置），则该块将被抛弃。
      * Note: The blocks involved are assumed to be in the workspace.
-     *
-     * @param blockConnection The open {@link Connection} on the block being connected.
+     *注意：所涉及的块假设在工作空间中。
+     * @param blockConnection The open {@link Connection} on the block being connected.正在连接的块上的打开{@link Connection}。
      * @param otherConnection The target {@link Connection} to connect to. This may already be
-     *                        connected.
+     *                        connected.连接到的目标{@link Connection}。这可能已经连接起来了。
      */
     public void connect(final Connection blockConnection, final Connection otherConnection) {
         groupAndFireEvents(new Runnable() {
@@ -822,8 +831,8 @@ public class BlocklyController {
     /**
      * Offsets the root block of impingingConnection, to confusion occlusion.
      *
-     * @param staticConnection The original connection of the block.
-     * @param impingingConnection The connection of the block to offset.
+     * @param staticConnection The original connection of the block.块的原始连接。
+     * @param impingingConnection The connection of the block to offset.块到偏移的连接
      */
     public void bumpBlock(final Connection staticConnection, final Connection impingingConnection) {
         groupAndFireEvents(new Runnable() {
@@ -837,7 +846,7 @@ public class BlocklyController {
     /**
      * Move all neighbors of the current block and its sub-blocks so that they don't appear to be
      * connected to the current block.  Does not do anything in headless mode (no views attached).
-     *
+     *移动当前块及其子块的所有邻居，以便它们看起来不与当前块连接。在无头模式中不做任何事情（没有附图）
      * @param currentBlock The {@link Block} to bump others away from.
      */
     public void bumpNeighbors(final Block currentBlock) {
@@ -846,7 +855,7 @@ public class BlocklyController {
             public void run() {
                 BlockGroup rootBlockGroup = mHelper.getRootBlockGroup(currentBlock);
                 if (rootBlockGroup == null) {
-                    return; // Do nothing, as connection locations are determined by views.
+                    return; // Do nothing, as connection locations are determined by views.什么都不做，因为连接位置是由视图决定的
                 }
 
                 bumpNeighborsRecursively(currentBlock, rootBlockGroup);
@@ -859,9 +868,9 @@ public class BlocklyController {
     /**
      * Removes the given block from its parent, removes the block from the model, and then unlinks
      * all views.  All descendant of this block remain attached, and are thus also removed from the
-     * workspace.
+     * workspace.从父模块中移除给定块，从模型中移除该块，然后解锁所有视图。此块的所有后代仍然附加，因此也从工作区中移除
      *
-     * @param block The {@link Block} to look up and remove.
+     * @param block The {@link Block} to look up and remove.{@link Block}查找和删除。
      */
     public void removeBlockTree(final Block block) {
         groupAndFireEvents(new Runnable() {
@@ -874,12 +883,12 @@ public class BlocklyController {
 
     /**
      * Remove a block and its descendants from the workspace and put it in the trash, respecting the
-     * root block's deletable flag. Use this method for user actions.
+     * root block's deletable flag. Use this method for user actions.从工作区中移除一个块及其子块，并将其放入垃圾桶中，同时尊重根块的可删除标志。使用此方法进行用户操作。
      * <p>
      * Note: Child blocks marked undeletable may be deleted, and this behavior may change in the
      * future. See <a href="https://github.com/google/blockly-android/issues/370">issue #370</a>.
      *
-     * @param block The block to remove, possibly with descendants attached.
+     * @param block The block to remove, possibly with descendants attached.该块要去掉，可能附带子块
      * @return True if the block was removed, false otherwise.
      */
     // TODO(#493): Sound Effect.
@@ -897,9 +906,9 @@ public class BlocklyController {
     /**
      * Remove a block and its descendants from the workspace and put it in the trash, regardless of
      * block's deletable state.  This method should only be used for programmatic manipulation of
-     * the workspace.
+     * the workspace.从工作区中移除块及其后代并将其放入垃圾箱，而不管块的可删除状态如何。此方法只应用于对工作空间的编程操作
      *
-     * @param block The block to remove, possibly with descendants attached.
+     * @param block The block to remove, possibly with descendants attached.该块要去掉，可能附带子块
      * @return True if the block was removed, false otherwise.
      */
     public boolean trashRootBlockIgnoringDeletable(final Block block) {
@@ -947,14 +956,14 @@ public class BlocklyController {
      * Moves a block (and the child blocks connected to it) from the trashed blocks (removing it
      * from the deleted blocks list), back to the workspace as a root block, including the
      * BlockGroup and other views in the trash {@link BlockListUI}.
-     *
+     *从已删除的块移动块（以及与其连接的子块）（从已删除的块列表中删除它），作为根块返回工作空间，包括BlockGroup和垃圾箱中的其他视图{@link BlockListUI}
      * This method does not connect the block to existing blocks, even if the block was connected
-     * before putting it in the trash.
+     * before putting it in the trash.此方法不会将块连接到现有块，即使块在将其放入垃圾箱之前已连接
      *
-     * @param previouslyTrashedBlock The block in the trash to be moved back to the workspace.
-     * @return The BlockGroup in the Workspace for the moved block.
+     * @param previouslyTrashedBlock The block in the trash to be moved back to the workspace.垃圾桶中的块将被移回工作区。
+     * @return The BlockGroup in the Workspace for the moved block.工作区中用于移动块的BlockGroup。
      *
-     * @throws IllegalArgumentException If {@code trashedBlock} is not found in the trashed blocks.
+     * @throws IllegalArgumentException If {@code trashedBlock} is not found in the trashed blocks.如果在已删除的块中找不到{@code trashedBlock}
      */
     public BlockGroup addBlockFromTrash(final @NonNull Block previouslyTrashedBlock) {
         final BlockGroup trashedGroupRoot[] = {null};
@@ -969,12 +978,12 @@ public class BlocklyController {
 
     /**
      * Implements {@link #addBlockFromTrash(Block)}. The following events may be added to the
-     * pending events:
+     * pending events:实现{@link #addBlockFromTrash（Block）}以下事件可能会添加到待处理事件中
      * <ol>
-     *    <li>A create event for adding the block back into the workspace.</li>
+     *    <li>A create event for adding the block back into the workspace.</li>用于将块添加回工作空间的create事件
      * </ol>
      *
-     * @param previouslyTrashedBlock {@link Block} to add back to the workspace from the trash.
+     * @param previouslyTrashedBlock {@link Block} to add back to the workspace from the trash.previousTrashedBlock {@link Block}从垃圾箱添加回工作区。
      */
     private BlockGroup addBlockFromTrashImpl(@NonNull Block previouslyTrashedBlock) {
         BlockGroup bg = mHelper.getParentBlockGroup(previouslyTrashedBlock);
@@ -1002,9 +1011,9 @@ public class BlocklyController {
 
     /**
      * Recursively unlinks models from the views, and disconnects the view tree including clearing
-     * the parent {@link BlockGroup}.
+     * the parent {@link BlockGroup}.从视图中递归取消链接模型，并断开视图树，包括清除父{@link BlockGroup}
      *
-     * @param block The root block of the tree to unlink.
+     * @param block The root block of the tree to unlink.取消链接的树的根块。
      */
     public void unlinkViews(Block block) {
         BlockView view = mHelper.getView(block);
@@ -1012,7 +1021,7 @@ public class BlocklyController {
             return;  // No view to unlink.
         }
 
-        // Verify the block has no parent.  Only unlink complete block sequences.
+        // Verify the block has no parent.  Only unlink complete block sequences.验证块没有父级。 仅取消链接完整的块序列
         if (block.getParentBlock() != null) {
             throw new IllegalArgumentException(
                     "Expected unconnected/root block; only allowed to unlink complete block trees");
@@ -1033,18 +1042,18 @@ public class BlocklyController {
     }
 
     /**
-     * Zooms into the workspace (i.e., enlarges the blocks), if the WorkspaceView has been attached.
+     * Zooms into the workspace (i.e., enlarges the blocks), if the WorkspaceView has been attached.如果已连接WorkspaceView，则放大到工作区（即放大块）。
      *
-     * @return True if a zoom was changed. Otherwise false.
+     * @return True if a zoom was changed. Otherwise false.如果更改了缩放，则为True。 否则是假的
      */
     public boolean zoomIn() {
         return (mVirtualWorkspaceView != null) && mVirtualWorkspaceView.zoomIn();
     }
 
     /**
-     * Zooms out the workspace (i.e., smaller the blocks), if the WorkspaceView has been attached.
+     * Zooms out the workspace (i.e., smaller the blocks), if the WorkspaceView has been attached.如果已连接WorkspaceView，则缩小工作区（即，缩小块）。
      *
-     * @return True if a zoom was changed. Otherwise false.
+     * @return True if a zoom was changed. Otherwise false.如果更改了缩放，则为True。 否则是假的。
      */
     public boolean zoomOut() {
         return (mVirtualWorkspaceView != null) && mVirtualWorkspaceView.zoomOut();
@@ -1052,7 +1061,7 @@ public class BlocklyController {
 
     /**
      * Reset the view to the top-left corner of the virtual workspace (with a small margin), and
-     * reset zoom to unit scale.
+     * reset zoom to unit scale.将视图重置为虚拟工作区的左上角（边距较小），然后将缩放重置为单位比例
      */
     public void recenterWorkspace() {
         if (mVirtualWorkspaceView != null) {
@@ -1062,10 +1071,10 @@ public class BlocklyController {
 
     /**
      * Clears the workspace of all blocks and the respective views from the {@link WorkspaceView},
-     * if connected.
+     * if connected.如果已连接，则从{@link WorkspaceView}清除所有块的工作空间和相应的视图。
      */
     public void resetWorkspace() {
-        // Unlink the Views before wiping out the model's root list.
+        // Unlink the Views before wiping out the model's root list.在擦除模型的根列表之前取消链接视图。
         ArrayList<Block> rootBlocks = mWorkspace.getRootBlocks();
         for (int i = 0; i < rootBlocks.size(); ++i) {
             unlinkViews(rootBlocks.get(i));
@@ -1086,7 +1095,7 @@ public class BlocklyController {
     }
 
     /**
-     * Removes all blocks from the {@link WorkspaceView} and puts them in the trash.
+     * Removes all blocks from the {@link WorkspaceView} and puts them in the trash.从{@link WorkspaceView}中删除所有块并将它们放入垃圾箱
      */
     public void trashAllBlocks() {
         groupAndFireEvents(new Runnable() {
@@ -1102,22 +1111,23 @@ public class BlocklyController {
 
     /**
      * Adds the provided block as a root block.  If a {@link WorkspaceView} is attached, it will
-     * also update the view, creating a new {@link BlockGroup} if not provided.
+     * also update the view, creating a new {@link BlockGroup} if not provided.将提供的块添加为根块
+     * 如果附加了{@link WorkspaceView}，它还将更新视图，如果未提供，则创建新的{@link BlockGroup}
      * <p/>
      * If {@code isNewBlock} is {@code true}, the system will collect stats about the connections,
      * functions and variables. This should only be {@code  false} if re-adding a moodel previously
      * removed via {@link #removeRootBlockImpl(Block, boolean)} where {@code cleanupStats} was also
-     * {@code false}.
+     * {@code false}.如果{@code isNewBlock}是{@code true}，系统将收集有关连接，函数和变量的统计信息。 如果重新添加之前通过{@link #removeRootBlockImpl（Block，boolean）}移除的模型，那么{@code false}应该只是{@code false}，其中{@code cleanupStats}也是{@code false}。
      * <p/>
-     * The following event may be added to the pending events:
+     * The following event may be added to the pending events:以下事件可能会添加到待处理事件中：
      * <ol>
-     *    <li>a create event if the block is new ({@code isNewBlock}).</li>
+     *    <li>a create event if the block is new ({@code isNewBlock}).</li>如果块是新的（{@code isNewBlock}），则为create事件
      * </ol>
      *
-     * @param block The {@link Block} to add to the workspace.
-     * @param bg The {@link BlockGroup} with block as the first {@link BlockView}.
+     * @param block The {@link Block} to add to the workspace.要添加到工作区的{@link Block}。
+     * @param bg The {@link BlockGroup} with block as the first {@link BlockView}.{@link BlockGroup}以块为第一个
      * @param isNewBlock Whether the block is new to the {@link Workspace} and the workspace should
-     *                   collect stats for this tree.
+     *                   collect stats for this tree.该块是否是{@link Workspace}的新内容，工作区应该收集此树的统计信息。
      */
     private BlockGroup addRootBlockImpl(Block block, @Nullable BlockGroup bg, boolean isNewBlock) {
         mWorkspace.addRootBlock(block, isNewBlock);
@@ -1137,12 +1147,13 @@ public class BlocklyController {
     }
 
     /**
-     * Implements {@link #addVariable(String)}, without firing events.
+     * Implements {@link #addVariable(String)}, without firing events.实现{@link #addVariable（String）}，而不触发事件
      *
-     * @param variable The desired name of the variable to create.
+     * @param variable The desired name of the variable to create.要创建的变量的所需名称。
      * @param forced True to skip the variable callback and add the given variable name immediately.
      *               False to request confirmation from the callback first.
-     * @return The actual variable name that was created or null if creation was blocked.
+     *               如果为True，则跳过变量回调并立即添加给定的变量名称.False以首先请求来自回调的确认。
+     * @return The actual variable name that was created or null if creation was blocked.创建的实际变量名称，如果创建被阻止，则为null
      */
     private String addVariableImpl(String variable, boolean forced) {
         if (!forced) {
@@ -1156,12 +1167,12 @@ public class BlocklyController {
     }
 
     /**
-     * Implements {@link #deleteVariable(String)}, without firing events.
+     * Implements {@link #deleteVariable(String)}, without firing events.实现{@link #deleteVariable（String）}，而不触发事件。
      *
-     * @param variable The variable to remove.
+     * @param variable The variable to remove.要删除的变量。
      * @param forced True to force removal even if there's a callback to delegate the action to.
-     *               This will not force the deletion of a procedure argument.
-     * @return True if the variable was removed, false otherwise.
+     *               This will not force the deletion of a procedure argument.即使有一个回调将动作委托给，也可以删除True到强制。这不会强制删除过程参数
+     * @return True if the variable was removed, false otherwise.如果删除了变量，则返回true，否则返回false
      */
     private boolean deleteVariableImpl(String variable, boolean forced) {
         VariableInfo varInfo = getVariableInfo(variable);
@@ -1180,7 +1191,7 @@ public class BlocklyController {
             }
 
             List<FieldVariable> fields = varInfo.getFields();
-            mTempBlocks.clear(); // Visited / removed blocks (in case of block with multiple).
+            mTempBlocks.clear(); // Visited / removed blocks (in case of block with multiple).访问/删除块（如果是多个块）。
             int fieldCount = fields.size();
             for (int i = 0; i < fieldCount; ++i) {
                 Block block = fields.get(i).getBlock();
@@ -1197,16 +1208,16 @@ public class BlocklyController {
 
     /**
      * Implements {@link #renameVariable(String, String)}.  The following events may be added to the
-     * pending events:
+     * pending events:实现{@link #renameVariable（String，String）}。 以下事件可能会添加到待处理事件中：
      * <ol>
-     *    <li>a change event for each variable field referencing the variable.</li>
-     *    <li>a change mutation event for each procedure block.</li>
+     *    <li>a change event for each variable field referencing the variable.</li>更改引用变量的每个变量字段的事件
+     *    <li>a change mutation event for each procedure block.</li>每个过程块的更改突变事件
      * </ol>
      *
-     * @param variable The variable to rename.
-     * @param newVariable The new name for the variable.
-     * @param forced True to skip the variable callback check and rename the variable immediately.
-     * @return The new variable name that was saved.
+     * @param variable The variable to rename.要重命名的变量。
+     * @param newVariable The new name for the variable.变量的新名称。
+     * @param forced True to skip the variable callback check and rename the variable immediately.如果为True，则跳过变量回调检查并立即重命名变量
+     * @return The new variable name that was saved.已保存的新变量名称
      */
     private String renameVariableImpl(String variable, String newVariable, boolean forced) {
         if (!forced && mVariableCallback != null) {
@@ -1245,7 +1256,7 @@ public class BlocklyController {
                     newArgs.add(argName);
                 }
 
-                // Mutate the procdure. This will mutate both the definition and the caller
+                // Mutate the procdure. This will mutate both the definition and the caller改变程序。 这将改变定义和调用者
                 procedureManager.mutateProcedure(definition,
                         new ProcedureInfo(
                                 procName, newArgs, oldProcInfo.getDefinitionHasStatementBody()));
@@ -1268,7 +1279,7 @@ public class BlocklyController {
 
     /**
      * Implements {@link #removeBlockTree(Block)}. The following event may be added to the
-     * pending events:
+     * pending events:实现{@link #removeBlockTree（Block）}。 以下事件可能会添加到待处理事件中：
      * <ol>
      *    <li>a delete event for the block if found.</li>
      * </ol>
@@ -1286,7 +1297,7 @@ public class BlocklyController {
     /**
      * Removes the given block from its parent and reparents its next block if it has one to its
      * former parent. Then removes the block from the model and unlinks all views.
-     * <p>
+     * <p>从父项中删除给定的块，如果它的前一个父项具有一个块，则重新创建它的下一个块。 然后从模型中删除块并取消链接所有视图。
      * This behaves similarly to {@link #removeBlockTree(Block)}, except it doesn't delete blocks
      * that come after the given block in sequence, only blocks connected to its inputs.
      * <p>

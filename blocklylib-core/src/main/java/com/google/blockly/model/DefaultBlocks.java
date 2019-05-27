@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Constants class for all default block definitions and supporting files.
+ * Constants class for all default block definitions and supporting files.所有默认块定义和支持文件的常量类。
  */
 public final class DefaultBlocks {
     public static final String VARIABLE_CATEGORY_NAME = "VARIABLE";

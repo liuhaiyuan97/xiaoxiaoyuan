@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:orientation="horizontal"
+    android:background="@mipmap/bg_lesson">
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+    <!--图片-->
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:layout_weight="2.7"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+        <ImageView
+            android:id="@+id/iv_lesson"
+            android:src="@mipmap/ppp1"
+            android:layout_width="match_parent"
+            android:layout_weight="8"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true" />
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+
+    <!--课程简介-->
+    <LinearLayout
+
+        android:layout_weight="5"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--课程标题-->
+        <TextView
+            android:id="@+id/tv_title_lesson"
+            android:gravity="bottom"
+            android:text="2017LCK夏季赛"
+            android:textColor="#20C3C8"
+            android:layout_weight="1"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+        <!--课程作者-->
+        <TextView
+            android:id="@+id/tv_athor_lesson"
+            android:gravity="bottom"
+            android:text="Riot、LCK"
+            android:textColor="#20C3C8"
+            android:layout_weight="1.5"
+            android:textSize="13dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp" />
+        <!--发布时间-->
+        <TextView
+            android:id="@+id/tv_time_lesson"
+            android:gravity="bottom"
+            android:text="刚刚"
+            android:textColor="#20C3C8"
+            android:textSize="13dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp" />
+    </LinearLayout>
+</LinearLayout>

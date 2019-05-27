@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@mipmap/bg_all">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1.5"
+        android:layout_height="match_parent"/>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/ll_all"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="6"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:background="@mipmap/bg_register">
+        <LinearLayout
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_marginBottom="15dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_weight="1.5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="登录"
+                android:textColor="@color/textdefalt"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="0.8"
+                android:layout_height="0dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="用户名:"
+                    android:textColor="@color/textdefalt"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ff0000"
+                    android:id="@+id/tv_userNameAndPwdIsReferences"
+                    />
+            </LinearLayout>
+            <EditText
+                android:textSize="13dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/et_userEmailOrPhone"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:textColor="@color/text"
+                android:textColorHint="@color/edittext"
+                android:hint="邮箱/手机号" />
+
+            <TextView
+                android:text="密码:"
+                android:textColor="@color/textdefalt"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.8"
+                android:layout_height="0dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                />
+
+            <EditText
+                android:textSize="13dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/et_userPassword"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:textColorHint="@color/edittext"
+                android:textColor="@color/text"
+                android:hint="请输入您的密码"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="3"
+                    android:layout_height="0dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:visibility="invisible"
+                        android:textColor="#626AE8"
+                        android:id="@+id/tv_forget_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="忘记密码?"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="right" />
+                    <LinearLayout
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_gravity="center"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp">
+                            <ImageView
+                                android:layout_gravity="center"
+                                android:id="@+id/btn_left"
+                                android:src="@mipmap/btn_left"
+                                android:layout_width="40dp"
+                                android:layout_height="25dp" />
+                            <Button
+                                android:textColor="@color/text"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:background="#00ffffff"
+                                android:id="@+id/btn_login"
+                                android:layout_width="60dp"
+                                android:layout_height="35dp"
+                                android:layout_gravity="center"
+                                android:text="登录"/>
+                            <ImageView
+                                android:id="@+id/btn_right"
+                                android:src="@mipmap/btn_right"
+                                android:layout_gravity="center"
+                                android:layout_width="40dp"
+                                android:layout_height="25dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent"/>
+
+                        <LinearLayout
+                            android:layout_gravity="center"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp">
+                            <ImageView
+                                android:id="@+id/btn_left1"
+                                android:src="@mipmap/btn_left"
+                                android:layout_gravity="center"
+                                android:layout_width="40dp"
+                                android:layout_height="25dp" />
+                            <Button
+                                android:textColor="@color/text"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:background="#00ffffff"
+                                android:id="@+id/btn_register"
+                                android:layout_width="60dp"
+                                android:layout_height="35dp"
+                                android:layout_gravity="center"
+                                android:text="注册"/>
+                            <ImageView
+                                android:id="@+id/btn_right1"
+                                android:src="@mipmap/btn_right"
+                                android:layout_gravity="center"
+                                android:layout_width="40dp"
+                                android:layout_height="25dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="right"
+        android:layout_width="0dp"
+        android:layout_weight="1.5"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <include layout="@layout/menu"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

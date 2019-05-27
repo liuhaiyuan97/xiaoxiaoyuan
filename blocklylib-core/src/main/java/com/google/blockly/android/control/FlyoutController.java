@@ -33,6 +33,7 @@ import java.util.List;
 /**
  * Provides control logic for the toolbox and trash in a workspace. Ensures the toolbox and trash
  * block-list flyouts are populated, opened, and closed in coordination.
+ * 为工作区和工作区中的垃圾提供控制逻辑。 确保协调填充，打开和关闭工具箱和垃圾箱列表弹出窗口。
  */
 public class FlyoutController {
     private static final String TAG = "FlyoutController";

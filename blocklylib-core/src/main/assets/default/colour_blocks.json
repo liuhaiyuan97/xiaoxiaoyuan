@@ -1,82 +1,159 @@
 [
   {
-    "type": "colour_picker",
-    "message0": "%1",
-    "args0": [
-      {
-        "type": "field_colour",
-        "name": "COLOUR",
-        "colour": "#ff0000"
-      }
-    ],
-    "output": "Colour",
-    "colour": 20,
-    "tooltip": "Choose a colour from the palette.",
-    "helpUrl": "https://en.wikipedia.org/wiki/Color"
-  },
-  {
-    "type": "colour_random",
-    "message0": "random colour",
-    "args0": [],
-    "output": null,
-    "colour": 20,
-    "tooltip": "Choose a colour at random.",
-    "helpUrl": "http://randomcolour.com"
-  },
-  {
-    "type": "colour_rgb",
-    "message0": "colour with red %1 green %2 blue %3",
+    "type": "flash_right",
+    "message0": "向右移动 %1",
     "args0": [
       {
         "type": "input_value",
-        "name": "RED",
-        "check": "Number",
-        "align": "RIGHT"
-      },
-      {
-        "type": "input_value",
-        "name": "GREEN",
-        "check": "Number",
-        "align": "RIGHT"
-      },
-      {
-        "type": "input_value",
-        "name": "BLUE",
-        "check": "Number",
-        "align": "RIGHT"
+        "name": "VALUE",
+        "check":"Number"
       }
     ],
-    "output": "Colour",
+//    "inputsInline": true,
+//    "output": "Number",
+//    "colour": 20,
+//    "helpUrl": "https://en.wikipedia.org/wiki/Arithmetic"
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
     "colour": 20,
-    "tooltip": "Create a colour with the specified amount of red, green, and blue. All values must be between 0 and 100.",
-    "helpUrl": "http://www.december.com/html/spec/colorper.html"
+    "tooltip": "Prompt for user for some text or a number.",
+    "helpUrl": "https://github.com/google/blockly/wiki/Text#getting-input-from-the-user",
+    "TODO(#394)": "https://github.com/google/blockly-android/issues/394"
   },
   {
-    "type": "colour_blend",
-    "message0": "blend colour 1 %1 colour 2 %2 ratio %3",
+    "type": "flash_left",
+    "message0": "向左移动 %1",
     "args0": [
       {
         "type": "input_value",
-        "name": "COLOUR1",
-        "check": "Colour",
-        "align": "RIGHT"
-      },
-      {
-        "type": "input_value",
-        "name": "COLOUR2",
-        "check": "Colour",
-        "align": "RIGHT"
-      },
-      {
-        "type": "input_value",
-        "name": "RATIO",
-        "check": "Number",
-        "align": "RIGHT"
+        "name": "VALUE",
+        "check": "Number"
       }
     ],
-    "output": null,
+//    "inputsInline": true,
+//    "output": "Number",
+//    "colour": 20,
+//    "helpUrl": "https://en.wikipedia.org/wiki/Arithmetic"
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
     "colour": 20,
-    "tooltip": "Blends two colours together with a given ratio (0.0 - 1.0).",
-    "helpUrl": "http://meyerweb.com/eric/tools/color-blend/"
+    "tooltip": "Prompt for user for some text or a number.",
+    "helpUrl": "https://github.com/google/blockly/wiki/Text#getting-input-from-the-user",
+    "TODO(#394)": "https://github.com/google/blockly-android/issues/394"
+  },
+  {
+    "type": "flash_up",
+    "message0": "向上移动 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 20,
+    "tooltip": "Prompt for user for some text or a number.",
+    "helpUrl": "https://github.com/google/blockly/wiki/Text#getting-input-from-the-user",
+    "TODO(#394)": "https://github.com/google/blockly-android/issues/394"
+  },
+  {
+    "type": "flash_down",
+    "message0": "向下移动 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 20,
+    "tooltip": "Prompt for user for some text or a number.",
+    "helpUrl": "https://github.com/google/blockly/wiki/Text#getting-input-from-the-user",
+    "TODO(#394)": "https://github.com/google/blockly-android/issues/394"
+  },
+  {
+    "type": "flash_bigwidth",
+    "message0": "宽度变大倍数 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check":"Number"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 20,
+    "tooltip": "Prompt for user for some text or a number.",
+    "helpUrl": "https://github.com/google/blockly/wiki/Text#getting-input-from-the-user",
+    "TODO(#394)": "https://github.com/google/blockly-android/issues/394"
+  },
+  {
+    "type": "flash_bigheight",
+    "message0": "高度变大倍数 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check":"Number"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 20,
+    "tooltip": "Prompt for user for some text or a number.",
+    "helpUrl": "https://github.com/google/blockly/wiki/Text#getting-input-from-the-user",
+    "TODO(#394)": "https://github.com/google/blockly-android/issues/394"
+  },
+  {
+    "type": "flash_returnwidth",
+    "message0": "宽度还原",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 20,
+    "tooltip": "Prompt for user for some text or a number.",
+    "helpUrl": "https://github.com/google/blockly/wiki/Text#getting-input-from-the-user",
+    "TODO(#394)": "https://github.com/google/blockly-android/issues/394"
+  },
+  {
+    "type": "flash_returnheight",
+    "message0": "高度还原",
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 20,
+    "tooltip": "Prompt for user for some text or a number.",
+    "helpUrl": "https://github.com/google/blockly/wiki/Text#getting-input-from-the-user",
+    "TODO(#394)": "https://github.com/google/blockly-android/issues/394"
+  },
+  {
+    "type": "flash_rotate",
+    "message0": "旋转角度 %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check":"Number"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 20,
+    "tooltip": "Prompt for user for some text or a number.",
+    "helpUrl": "https://github.com/google/blockly/wiki/Text#getting-input-from-the-user",
+    "TODO(#394)": "https://github.com/google/blockly-android/issues/394"
   }
+
 ]

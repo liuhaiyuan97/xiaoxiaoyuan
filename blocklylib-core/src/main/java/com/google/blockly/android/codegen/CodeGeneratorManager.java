@@ -26,9 +26,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * Client Side class responsible for connecting to the {@link CodeGeneratorService}.
+ * Client Side class responsible for connecting to the {@link CodeGeneratorService}.客户端类负责连接到
  *
- * A connection to the service is only made the first time code generation is requested.
+ * A connection to the service is only made the first time code generation is requested.只有在第一次请求代码生成时才建立到服务的连接
  */
 public class CodeGeneratorManager {
     private static final String TAG = "CodeGeneratorManager";
@@ -73,7 +73,7 @@ public class CodeGeneratorManager {
     }
 
     /**
-     * Unbind the underlying service (if it is bound).
+     * Unbind the underlying service (if it is bound).取消绑定底层服务（如果绑定）
      */
     public void onPause() {
         mResumed = false;
@@ -82,7 +82,7 @@ public class CodeGeneratorManager {
 
     /**
      * Inform this class that it is ok to bind to the service and remove any stored requests as
-     * the service won't be bound until a new request comes in.
+     * the service won't be bound until a new request comes in.通知这个类可以绑定到服务并删除任何存储的请求，因为服务只有在收到新请求时才会被绑定
      */
     public void onResume() {
         mResumed = true;
@@ -90,7 +90,7 @@ public class CodeGeneratorManager {
     }
 
     /**
-     * Checks if the service is currently bound and unbinds it if it is.
+     * Checks if the service is currently bound and unbinds it if it is.检查服务当前是否绑定并将其解除绑定。
      */
     protected void unbind() {
         if (isBound()) {
@@ -100,9 +100,9 @@ public class CodeGeneratorManager {
     }
 
     /**
-     * Calls the Service to request code generation for the workspace passed in.
+     * Calls the Service to request code generation for the workspace passed in.调用服务以请求传入的工作空间的代码生成
      *
-     * @param codeGenerationRequest the request to generate code.
+     * @param codeGenerationRequest the request to generate code.生成代码的请求。
      */
     public void requestCodeGeneration(CodeGenerationRequest codeGenerationRequest) {
         if(!mResumed) {

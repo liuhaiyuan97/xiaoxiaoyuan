@@ -36,7 +36,7 @@ import java.util.List;
 
 /**
  * A category of a toolbox, which holds zero or more blocks or zero or more subcategories. Not both.
- * {@link FlyoutFragment} is responsible for displaying this.
+ * {@link FlyoutFragment} is responsible for displaying this.工具箱的一个类别，包含零个或多个块或零个或多个子类别。 不是两个。{@ link FlyoutFragment}负责显示这个。
  */
 public class BlocklyCategory {
     private static final String TAG = "BlocklyCategory";
@@ -49,7 +49,7 @@ public class BlocklyCategory {
 
     protected final List<BlocklyCategory> mSubcategories = new ArrayList<>();
     protected final List<CategoryItem> mItems = new ArrayList<>();
-    // As displayed in the toolbox.
+    // As displayed in the toolbox.如工具箱中所示。
     private String mCategoryName;
     private String mCustomType;
     private Integer mColor = null;
@@ -60,14 +60,14 @@ public class BlocklyCategory {
     }
 
     /**
-     * @return The user visible name of this category.
+     * @return The user visible name of this category.@return此类别的用户可见名称。
      */
     public String getCategoryName() {
         return mCategoryName;
     }
 
     /**
-     * @return The custom type of this category.
+     * @return The custom type of this category.@return此类别的自定义类型
      */
     public String getCustomType() {
         return mCustomType;
@@ -75,9 +75,9 @@ public class BlocklyCategory {
 
     /**
      * Gets the list of blocks in this category. The list should not be modified directly, instead
-     * {@link #addItem(CategoryItem)} and {@link #removeItem(CategoryItem)} should be used.
+     * {@link #addItem(CategoryItem)} and {@link #removeItem(CategoryItem)} should be used.获取此类别中的块列表。 不应直接修改列表，而应使用{@link #（CategoryItem）}和{@link #removeItem（CategoryItem）}。
      *
-     * @return The list of blocks in this category.
+     * @return The list of blocks in this category.此类别中的块列表。
      */
     public List<CategoryItem> getItems() {
         return mItems;
@@ -92,7 +92,7 @@ public class BlocklyCategory {
     }
 
     /**
-     * Add a {@link Block} to the blocks displayed in this category.
+     * Add a {@link Block} to the blocks displayed in this category.将{@link Block}添加到此类别中显示的块。
      *
      * @param item The {@link Block} to add.
      */
@@ -104,7 +104,7 @@ public class BlocklyCategory {
     }
 
     /**
-     * Add a {@link Block} to the blocks displayed in this category at the specified index.
+     * Add a {@link Block} to the blocks displayed in this category at the specified index.在指定索引处的此类别中显示的块中添加{@link Block}。
      *
      * @param index The index to insert the block at.
      * @param item The {@link Block} to add.
@@ -117,7 +117,7 @@ public class BlocklyCategory {
     }
 
     /**
-     * Removes an item from this category.
+     * Removes an item from this category.从此类别中删除项目。
      *
      * @param item The item to remove.
      * @return true if the item was found and removed, false otherwise.
@@ -131,7 +131,7 @@ public class BlocklyCategory {
     }
 
     /**
-     * Removes an item from this category.
+     * Removes an item from this category.从此类别中删除项目。
      *
      * @param index The position of the item to remove.
      * @return true if the item was removed, otherwise an OOBE will be thrown.
@@ -145,7 +145,7 @@ public class BlocklyCategory {
     }
 
     /**
-     * Convenience method for removing a {@link BlockItem} from this category by its block.
+     * Convenience method for removing a {@link BlockItem} from this category by its block.通过其块从此类别中删除{@link BlockItem}的便捷方法。
      *
      * @param block The block to locate and remove.
      * @return true if an item with that block was found and removed, false otherwise.
@@ -159,7 +159,7 @@ public class BlocklyCategory {
     }
 
     /**
-     * @return The index of the given item or -1 if it's not in this category.
+     * @return The index of the given item or -1 if it's not in this category.@return给定项目的索引，如果不在此类别中，则为-1。
      */
     public int indexOf(CategoryItem item) {
         return mItems.indexOf(item);
@@ -182,7 +182,7 @@ public class BlocklyCategory {
     }
 
     /**
-     * Clear the contents of this category and all subcategories; remove subcategories.
+     * Clear the contents of this category and all subcategories; remove subcategories.清除此类别和所有子类别的内容; 删除子类别。
      */
     public void clear() {
         for (int i = 0; i < mSubcategories.size(); i++) {
@@ -196,7 +196,7 @@ public class BlocklyCategory {
     }
 
     /**
-     * @return True if this category contains no blocks or subcategories, false otherwise.
+     * @return True if this category contains no blocks or subcategories, false otherwise.@return如果此类别不包含块或子类别，则为True，否则为false。
      */
     public boolean isEmpty() {
         return mSubcategories.isEmpty() && mItems.isEmpty();
@@ -204,7 +204,7 @@ public class BlocklyCategory {
 
     /**
      * Fill the given list with of the {@link Block} instances in this category and its
-     * subcategories.
+     * subcategories.使用此类别及其子类别中的{@link Block}实例填充给定列表。
      *
      * @param blocks The list to add to, which is not cleared before adding blocks.
      */
@@ -220,15 +220,15 @@ public class BlocklyCategory {
     }
 
     /**
-     * Read the full definition of the category's contents in from XML.
+     * Read the full definition of the category's contents in from XML.从XML中读取类别内容的完整定义。
      *
-     * @param parser The {@link XmlPullParser} to read from.
-     * @param factory The {@link BlockFactory} to use to generate blocks from their names.
-     * @param workspaceId The workspaceId to set on all blocks attached to this Category.
+     * @param parser The {@link XmlPullParser} to read from.@param parser要读取的{@link XmlPullParser}。
+     * @param factory The {@link BlockFactory} to use to generate blocks from their names.@param factory用于从名称生成块的{@link BlockFactory}。
+     * @param workspaceId The workspaceId to set on all blocks attached to this Category.@param workspaceId要在附加到此类别的所有块上设置的workspaceId。
      *
-     * @return A new {@link BlocklyCategory} with the contents given by the XML.
+     * @return A new {@link BlocklyCategory} with the contents given by the XML.@return一个新的{@link BlocklyCategory}，包含XML给出的内容。
      * @throws BlockLoadingException If any error occurs with the input. It may wrap an IOException
-     *                               or XmlPullParserException as a root cause.
+     *                               or XmlPullParserException as a root cause.@throws BlockLoadingException如果输入发生任何错误。 它可能会将IOException或XmlPullParserException包装为根本原因。
      */
     public static BlocklyCategory fromXml(XmlPullParser parser, BlockFactory factory,
                                           String workspaceId)
@@ -308,14 +308,14 @@ public class BlocklyCategory {
     }
 
     /**
-     * @param subcategory The category to add under this category.
+     * @param subcategory The category to add under this category.@param subcategory要在此类别下添加的类别
      */
     public void addSubcategory(BlocklyCategory subcategory) {
         mSubcategories.add(subcategory);
     }
 
     /**
-     * Callback class for listening to changes to this category.
+     * Callback class for listening to changes to this category.用于侦听此类别更改的回调类。
      */
     public abstract static class Callback {
         /**
@@ -341,7 +341,7 @@ public class BlocklyCategory {
     }
 
     /**
-     * Wraps items that can be displayed as part of a {@link BlocklyCategory}.
+     * Wraps items that can be displayed as part of a {@link BlocklyCategory}.包装可以作为{@link BlocklyCategory}的一部分显示的项目。
      */
     public abstract static class CategoryItem {
         @Retention(RetentionPolicy.SOURCE)
@@ -364,7 +364,7 @@ public class BlocklyCategory {
     }
 
     /**
-     * Flyout item that contains a stack blocks.
+     * Flyout item that contains a stack blocks.包含堆栈块的弹出项目。
      */
     public static class BlockItem extends CategoryItem {
         private final Block mBlock;
@@ -380,7 +380,7 @@ public class BlocklyCategory {
     }
 
     /**
-     * Flyout item representing a clickable button, such as "Add Variable".
+     * Flyout item representing a clickable button, such as "Add Variable".表示可点击按钮的弹出项目，例如“添加变量”。
      */
     // TODO (#503): Support style and callback spec
     public static class ButtonItem extends CategoryItem {
@@ -402,7 +402,7 @@ public class BlocklyCategory {
     }
 
     /**
-     * Flyout item representing a label between groups of blocks.
+     * Flyout item representing a label between groups of blocks.弹出项目表示块组之间的标签。
      */
     // TODO (#503): Support styling
     public static class LabelItem extends CategoryItem {
