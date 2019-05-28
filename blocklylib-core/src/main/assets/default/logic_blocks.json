@@ -1,7 +1,7 @@
 [
   {
     "type": "controls_if",
-    "message0": "if %1 do %2",
+    "message0": "如果 %1 执行 %2",
     "args0": [
       {
         "type": "input_value",
@@ -21,7 +21,7 @@
   },
   {
     "type": "controls_ifelse",
-    "message0": "if %1",
+    "message0": "如果 %1",
     "args0": [
       {
         "type": "input_value",
@@ -29,14 +29,14 @@
         "check": "Boolean"
       }
     ],
-    "message1": "do %1",
+    "message1": "执行 %1",
     "args1": [
       {
         "type": "input_statement",
         "name": "DO0"
       }
     ],
-    "message2": "else %1",
+    "message2": "否则 %1",
     "args2": [
       {
         "type": "input_statement",
@@ -68,6 +68,22 @@
           [
             "\u2260",
             "NEQ"
+          ],
+          [
+            "<",
+            "LT"
+          ],
+          [
+            "<=",
+            "LTE"
+          ],
+          [
+            ">",
+            "GT"
+          ],
+          [
+            ">=",
+            "GTE"
           ]
         ]
       },
@@ -95,11 +111,11 @@
         "name": "OP",
         "options": [
           [
-            "and",
+            "并且",
             "AND"
           ],
           [
-            "or",
+            "或者",
             "OR"
           ]
         ]
@@ -117,7 +133,7 @@
   },
   {
     "type": "logic_negate",
-    "message0": "not %1",
+    "message0": "不是 %1",
     "args0": [
       {
         "type": "input_value",
@@ -132,18 +148,18 @@
   },
   {
     "type": "logic_boolean",
-    "message0": "%1",
+    "message0": "判断%1",
     "args0": [
       {
         "type": "field_dropdown",
         "name": "BOOL",
         "options": [
           [
-            "true",
+            "真",
             "TRUE"
           ],
           [
-            "false",
+            "假",
             "FALSE"
           ]
         ]
@@ -164,7 +180,7 @@
   },
   {
     "type": "logic_ternary",
-    "message0": "test %1 if true %2 if false %3",
+    "message0": "语句 %1 真则执行 %2 假则执行 %3",
     "args0": [
       {
         "type": "input_value",

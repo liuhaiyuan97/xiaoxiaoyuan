@@ -41,7 +41,8 @@ public class SingleMimeTypeClipDataHelper implements BlockClipDataHelper {
      * from the application's package name. This assumes all Blockly workspaces in an app use with
      * a shared set of blocks, and blocks can be dragged/copied/pasted them, even if they are
      * in different Activities. It also ensures blocks from other applications will be rejected.
-     *
+     *这构造了一个{@link SingleMimeTypeClipDataHelper}，其MIME类型派生自应用程序的包名。 这假设应用程序中的所有Blockly工作区都使用共享的块集，
+     * 并且可以拖动/复制/粘贴块，即使它们位于不同的活动中。 它还可以确保拒绝来自其他应用程序的块。
      * @param context
      * @return
      */
@@ -59,7 +60,7 @@ public class SingleMimeTypeClipDataHelper implements BlockClipDataHelper {
 
     /**
      * Constructs a new {@link SingleMimeTypeClipDataHelper} with the provided MIME string and
-     * user visible (accessibility, etc.) clip label string.
+     * user visible (accessibility, etc.) clip label string.使用提供的MIME字符串和用户可见（可访问性等）剪辑标签字符串构造一个新的{@link SingleMimeTypeClipDataHelper}。
      *
      * @param mimeType The MIME type the new instance use for encoding and decoding.
      * @param clipLabel The human readable label to apply to {@link ClipData}s.

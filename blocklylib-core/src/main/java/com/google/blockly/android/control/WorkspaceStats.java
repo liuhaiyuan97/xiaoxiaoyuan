@@ -34,7 +34,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Tracks information about the Workspace that we want fast access to.
+ * Tracks information about the Workspace that we want fast access to.跟踪有关我们想要快速访问的工作区的信息。
  */
 public class WorkspaceStats {
     // Maps from variable/procedure names to the blocks/fields where they are referenced.

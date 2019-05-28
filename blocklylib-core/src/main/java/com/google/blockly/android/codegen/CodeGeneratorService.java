@@ -45,14 +45,14 @@ import java.util.List;
 
 /**
  * Background service that uses a WebView to statically load the Web Blockly libraries and use them
- * to generate code.
+ * to generate code.使用WebView静态加载Web Blockly库并使用它们生成代码的后台服务
  */
 public class CodeGeneratorService extends Service {
     private static final String TAG = "CodeGeneratorService";
     private static final String BLOCKLY_COMPILER_PAGE =
             "file:///android_asset/background_compiler.html";
 
-    // Binder given to clients
+    // Binder given to clients.给客户的Binder
     private final IBinder mBinder = new CodeGeneratorBinder();
     private final ArrayDeque<CodeGenerationRequest> mRequestQueue = new ArrayDeque<>();
     private boolean mReady = false;
@@ -96,9 +96,9 @@ public class CodeGeneratorService extends Service {
 
     /**
      * Enqueues a {@link CodeGenerationRequest} and kicks off generation of the first request in the
-     * queue if no request is in progress.
+     * queue if no request is in progress.如果队列中没有正在进行请求，则进入a并开始生成队列中的第一个请求
      *
-     * @param request The request to add to the queue.
+     * @param request The request to add to the queue.添加到队列中的请求
      */
     public void requestCodeGeneration(CodeGenerationRequest request) {
         synchronized (this) {
@@ -109,7 +109,7 @@ public class CodeGeneratorService extends Service {
 
     /**
      * If no {@link CodeGenerationRequest} instances are already being processed, kicks off
-     * generation of code for the first request in the queue.
+     * generation of code for the first request in the queue.如果没有实例已经被处理，则开始为队列中的第一个请求生成代码
      */
     private void handleRequest() {
         synchronized (this) {
@@ -126,7 +126,7 @@ public class CodeGeneratorService extends Service {
                     });
                     return;
                 }
-                // Run on the main thread.
+                // Run on the main thread.在主线程上运行。
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -135,7 +135,7 @@ public class CodeGeneratorService extends Service {
                                 || !equivalentLists(request.getBlockGeneratorsFilenames(),
                                 mGenerators)) {
                              //Reload the page with the new block definitions.  Push the request
-                             //back onto the queue until the page is loaded.
+                             //back onto the queue until the page is loaded.用新的块定义重新加载页面。将请求推回到队列中，直到加载页为止。
                             mDefinitions = request.getBlockDefinitionsFilenames();
                             mGenerators = request.getBlockGeneratorsFilenames();
                             mGeneratorLanguage = request.getGeneratorLanguageDefinition();
@@ -161,15 +161,15 @@ public class CodeGeneratorService extends Service {
      * serialized blocks.
      *
      * @param xml
-     * @return The javascript: URL used to invoke code generation.
+     * @return The javascript: URL used to invoke code generation.JavaScript：用于调用代码生成的URL
      */
     @Nullable
     @VisibleForTesting
     static String buildCodeGenerationUrl(String xml, String generatorObject) {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            // Prior to KitKat a different WebView was used that didn't handle
-            // special characters passed in to it. We skip the encoding on
-            // later versions to save time.
+            // Prior to KitKat a different WebView was used that didn't handle.在KikAT之前，没有使用不同的WebVIEW
+            // special characters passed in to it. We skip the encoding on.传递给它的特殊字符。我们跳过编码
+            // later versions to save time.后期版本节省时间
             try {
                 String urlEncodedXml = URLEncoder.encode(xml, "UTF-8");
                 urlEncodedXml = urlEncodedXml.replace("+", "%20");
@@ -228,7 +228,7 @@ public class CodeGeneratorService extends Service {
                 return "";
             }
             if (mDefinitions.size() == 1) {
-                // Pass in contents without parsing.
+                // Pass in contents without parsing.在没有解析的情况下传递内容
                 String filename = mDefinitions.get(0);
                 try {
                     return loadAssetAsUtf8(filename);
@@ -237,7 +237,7 @@ public class CodeGeneratorService extends Service {
                     return "";
                 }
             } else {
-                // Concatenate all definitions into a single stream.
+                // Concatenate all definitions into a single stream.将所有定义连接到单个流中。
                 JSONArray allBlocks = new JSONArray();
                 String filename = null;
                 try {
@@ -275,7 +275,7 @@ public class CodeGeneratorService extends Service {
                 return false;
             }
         }
-        return checkList.isEmpty(); // If it is empty, all filenames were found / matched.
+        return checkList.isEmpty(); // If it is empty, all filenames were found / matched.如果为空，则找到所有文件名/匹配。
     }
 
     private String loadAssetAsUtf8(String filename) throws IOException {

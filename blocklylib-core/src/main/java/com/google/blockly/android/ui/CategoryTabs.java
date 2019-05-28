@@ -39,12 +39,14 @@ import java.util.List;
 
 /**
  * A {@code CategoryTabs} view shows the list of available {@link BlocklyCategory}s as tabs.
+ * {@code CategoryTabs}视图显示可用的{@link BlocklyCategory}列表作为选项卡
  * <p/>
  * The view can be configured in either {@link #HORIZONTAL} (default) or {@link #VERTICAL}
  * orientation. If there is not enough space, the tabs will scroll in the same direction.
+ * 可以在{@link #HORIZONTAL}（默认）或{@link #VERTICAL}方向配置视图。 如果没有足够的空间，选项卡将以相同的方向滚动
  * <p/>
  * Additionally, the tab labels can be rotated using the {@link Rotation} constants. All tabs will
- * be rotated in the same direction.
+ * be rotated in the same direction.此外，可以使用{@link Rotation}常量旋转制表符标签。 所有标签将以相同方向旋转。
  */
 public class CategoryTabs extends RecyclerView {
     public static final String TAG = "CategoryTabs";
@@ -88,7 +90,7 @@ public class CategoryTabs extends RecyclerView {
         try {
             //noinspection ResourceType
             mLabelRotation = a.getInt(R.styleable.BlocklyCategory_labelRotation, mLabelRotation);
-            int orientation = a.getInt(R.styleable.BlocklyCategory_scrollOrientation, VERTICAL);
+            int orientation = a.getInt(R.styleable.BlocklyCategory_scrollOrientation,VERTICAL);
             mLayoutManager.setOrientation(orientation);
         } finally {
             a.recycle();
@@ -96,7 +98,7 @@ public class CategoryTabs extends RecyclerView {
     }
 
     /**
-     * Sets the {@link Adapter} responsible for the label views.
+     * Sets the {@link Adapter} responsible for the label views.设置负责标签视图的{@link Adapter}。
      */
     public void setLabelAdapter(LabelAdapter labelAdapter) {
         mLabelAdapter = labelAdapter;
@@ -104,9 +106,9 @@ public class CategoryTabs extends RecyclerView {
     }
 
     /**
-     * Sets the {@link CategorySelectorUI.Callback} used by this instance.
+     * Sets the {@link CategorySelectorUI.Callback} used by this instance.设置此实例使用的{@link CategorySelectorUI.Callback}。
      *
-     * @param callback The {@link CategorySelectorUI.Callback} for event handling.
+     * @param callback The {@link CategorySelectorUI.Callback} for event handling.@param回调用于事件处理的{@link CategorySelectorUI.Callback}。
      */
     public void setCallback(@Nullable CategorySelectorUI.Callback callback) {
         mCallback = callback;
@@ -114,18 +116,18 @@ public class CategoryTabs extends RecyclerView {
 
     /**
      * Sets the orientation in which the tabs will accumulate, which is also the scroll direction
-     * when there are more tabs than space allows.
+     * when there are more tabs than space allows.设置选项卡累积的方向，当空格允许的选项卡多时，也可以设置滚动方向。
      *
-     * @param orientation Either {@link #HORIZONTAL} or {@link #VERTICAL}.
+     * @param orientation Either {@link #HORIZONTAL} or {@link #VERTICAL}.@param orientation {@link #HORIZONTAL}或{@link #VERTICAL}。
      */
     public void setOrientation(int orientation) {
         mLayoutManager.setOrientation(orientation);
     }
 
     /**
-     * Sets the {@link Rotation} direction constant for the tab labels.
+     * Sets the {@link Rotation} direction constant for the tab labels.为选项卡标签设置{@link Rotation}方向常量。
      *
-     * @param labelRotation The {@link Rotation} direction constant for the tab labels.
+     * @param labelRotation The {@link Rotation} direction constant for the tab labels.@param labelRotation选项卡标签的{@link Rotation}方向常量。
      */
     public void setLabelRotation(@Rotation.Enum int labelRotation) {
         mLabelRotation = labelRotation;
@@ -133,18 +135,19 @@ public class CategoryTabs extends RecyclerView {
     }
 
     /**
-     * Sets whether the selected tab will deselect when clicked again.
+     * Sets whether the selected tab will deselect when clicked again.设置再次单击时是否取消选择所选选项卡。
      *
-     * @param tapSelectedDeselects If {@code true}, selected tab will deselect when clicked again.
+     * @param tapSelectedDeselects If {@code true}, selected tab will deselect when clicked again.@param tapSelectedDeselects如果{@code true}，选中的选项卡将在再次单击时取消选择
+     *
      */
     public void setTapSelectedDeselects(boolean tapSelectedDeselects) {
-        mTapSelectedDeselects = tapSelectedDeselects;
+        mTapSelectedDeselects = true;
     }
 
     /**
-     * Sets the list of {@link BlocklyCategory}s used to populate the tab labels.
+     * Sets the list of {@link BlocklyCategory}s used to populate the tab labels.设置用于填充选项卡标签的{@link BlocklyCategory}列表。
      *
-     * @param categories The list of {@link BlocklyCategory}s used to populate the tab labels.
+     * @param categories The list of {@link BlocklyCategory}s used to populate the tab labels.@param categories用于填充选项卡标签的{@link BlocklyCategory}列表。
      */
     public void setCategories(List<BlocklyCategory> categories) {
         mCategories.clear();
@@ -154,7 +157,7 @@ public class CategoryTabs extends RecyclerView {
 
     /**
      * Sets the currently selected tab. If the tab is not a member of the assigned categories, no
-     * tab will render selected.
+     * tab will render selected.设置当前选定的选项卡。 如果选项卡不是指定类别的成员，则不会选择任何选项卡。
      *
      * @param category
      */
@@ -163,7 +166,7 @@ public class CategoryTabs extends RecyclerView {
             return;
         }
         if (mCurrentCategory != null) {
-            // Deselect the old tab.
+            // Deselect the old tab.取消选择旧选项卡。
             TabLabelHolder vh = getTabLabelHolder(mCurrentCategory);
             if (vh != null && mLabelAdapter != null) {  // Tab might not be rendered or visible yet.
                 // Update style. Don't use notifyItemChanged(..), due to a resulting UI flash.
@@ -184,7 +187,7 @@ public class CategoryTabs extends RecyclerView {
     }
 
     /**
-     * @return The currently highlighted category or null.
+     * @return The currently highlighted category or null.@return当前突出显示的类别或null。
      */
     public BlocklyCategory getSelectedCategory() {
         return mCurrentCategory;
@@ -230,7 +233,7 @@ public class CategoryTabs extends RecyclerView {
         public void onBindViewHolder(TabLabelHolder holder, int tabPosition) {
             final BlocklyCategory category = mCategories.get(tabPosition);
             boolean isSelected = (category == mCurrentCategory);
-            // These may throw a NPE, but that is an illegal state checked above.
+            // These may throw a NPE, but that is an illegal state checked above.这些可能会引发NPE，但这是上面检查的非法状态。
             mLabelAdapter.onBindLabel(holder.mLabel, category, tabPosition);
             mLabelAdapter.onSelectionChanged(holder.mLabel, category, tabPosition, isSelected);
             holder.mCategory = category;
@@ -250,7 +253,7 @@ public class CategoryTabs extends RecyclerView {
 
         @Override
         public void onViewRecycled(TabLabelHolder holder) {
-            holder.mRotator.setTag(null);  // Remove reference to holder.
+            holder.mRotator.setTag(null);  // Remove reference to holder.删除对持有人的引用。
             holder.mCategory = null;
             holder.mLabel.setOnClickListener(null);
         }
@@ -266,7 +269,7 @@ public class CategoryTabs extends RecyclerView {
 
         /**
          * Assigns the category name to the {@link TextView}. Tabs without labels will be assigned
-         * the text {@link R.string#blockly_toolbox_default_category_name} ("Blocks" in English).
+         * the text {@link R.string#blockly_toolbox_default_category_name} ("Blocks" in English).将类别名称分配给{@link TextView}。 没有标签的标签将被分配文本{@link R.string＃blockly_toolbox_default_category_name}（英语中的“Blocks”）。
          *
          * @param labelView The view used as the label.
          * @param category The {@link BlocklyCategory}.
@@ -286,7 +289,7 @@ public class CategoryTabs extends RecyclerView {
     public abstract static class LabelAdapter {
         /**
          * Create a label view for a tab. This view will later be assigned an
-         * {@link View.OnClickListener} to handle tab selection and deselection.
+         * {@link View.OnClickListener} to handle tab selection and deselection.为选项卡创建标签视图。 稍后将为此视图分配{@link View.OnClickListener}以处理选项卡选择和取消选择。
          */
         public abstract View onCreateLabel();
 
@@ -318,7 +321,7 @@ public class CategoryTabs extends RecyclerView {
     }
 
     /**
-     * ViewHolder for the display name of a category in the toolbox.
+     * ViewHolder for the display name of a category in the toolbox.ViewHolder用于工具箱中类别的显示名称。
      */
     private static class TabLabelHolder extends RecyclerView.ViewHolder {
         public final RotatedViewGroup mRotator;

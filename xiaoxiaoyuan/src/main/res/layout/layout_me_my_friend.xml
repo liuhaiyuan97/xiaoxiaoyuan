@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/ll_me_right_my_friend">
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <EditText
+            android:textSize="14dp"
+            android:id="@+id/et_add_friend"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:textColor="#368E90"
+            android:textColorHint="@color/edittext"
+            android:hint="输入账号添加好友"/>
+        <Button
+            android:id="@+id/btn_add_friend"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1.8"
+            android:textColor="@color/text"
+            android:background="@mipmap/bg_btn"
+            android:text="添加"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="3"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_add_friend_warning"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ff0000"/>
+        <ListView
+            android:dividerHeight="5dp"
+            android:id="@+id/lv_my_friend"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+</LinearLayout>
+

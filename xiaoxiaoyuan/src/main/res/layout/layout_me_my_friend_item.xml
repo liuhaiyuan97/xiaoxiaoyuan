@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_marginBottom="2dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/iv_friend_head"
+            android:layout_marginLeft="5dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/ic_launcher"/>
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:text="云云"
+                android:textSize="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:textColor="@color/text"
+                android:id="@+id/tv_friend_name"/>
+            <TextView
+                android:text="2000-2-2"
+                android:textSize="12dp"
+                android:textColor="@color/text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/tv_friend_birthday"/>
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_friend_delete"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1.8"
+            android:background="@mipmap/bg_btn"
+            android:textColor="@color/text"
+            android:text="删除"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#696969"/>
+</LinearLayout>

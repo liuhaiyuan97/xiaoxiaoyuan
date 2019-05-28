@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@mipmap/bg_all"
+    android:gravity="right"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!--水平占位权重一-->
+    <LinearLayout
+        android:layout_weight="2.5"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/iv_return"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/bg_return1"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+    </LinearLayout>
+    <!--水平占位权重二：课程列表-->
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@mipmap/bg_register"
+        android:layout_weight="8"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/lv_lesson"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+    </LinearLayout>
+    <!--水平占位权重三：菜单-->
+    <LinearLayout
+        android:layout_weight="1.5"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+
+    </LinearLayout>
+</LinearLayout>

@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Controller for Connections.
+ * Controller for Connections.连接控制器。
  */
 public class ConnectionManager {
     private static final String TAG = "ConnectionManager";

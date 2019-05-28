@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fra_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:background="@mipmap/bg_lab">
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/lra_marks"
+            android:text="名次"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:textColor="@color/text"
+            android:gravity="center"
+            android:textSize="17dp"/>
+        <ImageView
+            android:src="@mipmap/tou"
+            android:layout_gravity="center"
+            android:id="@+id/lra_image"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_margin="5dp"
+            android:adjustViewBounds="true" />
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/lra_labber"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:layout_width="60dp"
+                android:layout_weight="4"
+                android:layout_height="0dp"
+                android:text="排名"
+                android:textColor="@color/text"
+                android:textSize="17dp" />
+            <TextView
+                android:id="@+id/lra_name"
+                android:layout_width="120dp"
+                android:layout_weight="8"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="名字"
+                android:textColor="@color/text"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/lra_addfriends"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@mipmap/me3"
+            android:gravity="right" />
+    </LinearLayout>
+</LinearLayout>
