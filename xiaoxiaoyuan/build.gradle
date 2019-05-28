@@ -49,4 +49,5 @@ dependencies {
     implementation files('libs/GifView.jar')
     implementation files('libs/ant-1.8.0.jar')
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    compile 'com.github.huburt-Hu:NewbieGuide:v2.1.0'
 }

@@ -19,6 +19,8 @@ package com.google.blockly.android.demo;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Fragment;
+import android.graphics.Color;
 import android.graphics.Path;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,11 +29,14 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
 import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.widget.Button;
@@ -39,8 +44,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewAnimator;
 
+import com.app.hubert.guide.NewbieGuide;
+import com.app.hubert.guide.model.GuidePage;
+import com.app.hubert.guide.model.HighLight;
 import com.google.blockly.android.AbstractBlocklyActivity;
+import com.google.blockly.android.CategorySelectorFragment;
+import com.google.blockly.android.WorkspaceFragment;
 import com.google.blockly.android.codegen.CodeGenerationRequest;
 import com.google.blockly.android.codegen.LanguageDefinition;
 import com.google.blockly.model.DefaultBlocks;
@@ -360,7 +371,35 @@ public class LuaActivity extends AbstractBlocklyActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onLoadWorkspace();
+                LinearLayout linearLayout=findViewById(R.id.ll_left);
+                LinearLayout linearLayout1=findViewById(R.id.ll_center);
+                LinearLayout linearLayout2=findViewById(R.id.ll_function);
+                NewbieGuide.with(LuaActivity.this)
+                        .alwaysShow(true)
+                        .setLabel("guide1")
+                        .addGuidePage(GuidePage.newInstance()
+                                .addHighLight(linearLayout)
+                                .setLayoutRes(R.layout.guide)
+                        )
+                        .addGuidePage(GuidePage.newInstance()
+                                .addHighLight(linearLayout1)
+                                .setLayoutRes(R.layout.guide1))
+                        .addGuidePage(GuidePage.newInstance()
+                                .addHighLight(btnReturn)
+                                .setLayoutRes(R.layout.guide2))
+                        .addGuidePage(GuidePage.newInstance()
+                                .addHighLight(btnClear)
+                                .setLayoutRes(R.layout.guide4))
+                        .addGuidePage(GuidePage.newInstance()
+                                .addHighLight(btnRun)
+                                .setLayoutRes(R.layout.guide5))
+                        .addGuidePage(GuidePage.newInstance()
+                                .addHighLight(linearLayout2)
+                                .setLayoutRes(R.layout.guide6))
+                        .addGuidePage(GuidePage.newInstance()
+                                .addHighLight(btnSave)
+                                .setLayoutRes(R.layout.guide3))
+                        .show();
             }
         });
         return root;

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+    <TextView
+        android:gravity="center"
+        android:fontFamily="@font/fzzh"
+        android:textSize="30dp"
+        android:textColor="#ffffff"
+        android:text="点击清除按钮可以清除控制台的内容并且收回右侧弹出框哦~"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+</LinearLayout>

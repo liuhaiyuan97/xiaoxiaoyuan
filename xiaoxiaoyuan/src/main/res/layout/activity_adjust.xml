@@ -7,53 +7,53 @@
     android:orientation="horizontal"
     android:background="@mipmap/bg_creat">
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2">
         <Button
+            android:layout_alignParentRight="true"
             android:id="@+id/btn_return"
             android:textStyle="bold"
             android:textColor="@color/down_color"
             android:textSize="9dp"
             android:background="@drawable/return_shadow"
-            android:layout_gravity="right"
             android:layout_width="50dp"
             android:layout_height="30dp" />
         <Button
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/btn_return"
             android:id="@+id/btn_adjust"
             android:textSize="9dp"
             android:background="@drawable/adjust_shadow"
             android:textColor="@color/down_color"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="right"
             android:layout_width="50dp"
             android:layout_height="30dp" />
         <Button
+            android:layout_alignParentRight="true"
             android:id="@+id/btn_question"
             android:textSize="9dp"
             android:background="@drawable/question_shadow"
             android:textColor="@color/down_color"
-            android:layout_marginTop="60dp"
-            android:layout_gravity="right"
+            android:layout_below="@id/btn_adjust"
             android:layout_width="50dp"
             android:layout_height="30dp" />
         <Button
+            android:layout_alignParentRight="true"
             android:id="@+id/btn_clear"
             android:textSize="9dp"
             android:background="@drawable/clear_shadow"
             android:textColor="@color/down_color"
-            android:layout_marginTop="90dp"
-            android:layout_gravity="right"
+            android:layout_below="@id/btn_question"
             android:layout_width="50dp"
             android:layout_height="30dp" />
         <Button
+            android:layout_alignParentRight="true"
             android:id="@+id/btn_run"
             android:background="@drawable/run_shadow"
             android:textColor="@color/down_color"
             android:textSize="9dp"
-            android:layout_marginTop="120dp"
-            android:layout_gravity="right"
+           android:layout_below="@id/btn_clear"
             android:layout_width="50dp"
             android:layout_height="30dp" />
         <include layout="@layout/blockly_unified_workspace" />
@@ -63,7 +63,7 @@
             android:background="@drawable/bg_creat1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-    </FrameLayout>
+    </RelativeLayout>
     <LinearLayout
         android:id="@+id/auto_tan"
         android:orientation="vertical"

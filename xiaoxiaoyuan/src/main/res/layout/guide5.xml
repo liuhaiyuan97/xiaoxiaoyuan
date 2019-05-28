@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+    <TextView
+        android:gravity="center"
+        android:fontFamily="@font/fzzh"
+        android:textSize="30dp"
+        android:textColor="#ffffff"
+        android:text="这是运行按钮，点击可以运行操作台的代码，并在右侧弹出哦~"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+</LinearLayout>
