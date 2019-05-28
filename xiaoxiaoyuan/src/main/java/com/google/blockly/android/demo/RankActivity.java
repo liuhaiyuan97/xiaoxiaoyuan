@@ -173,10 +173,6 @@ public class RankActivity extends AppCompatActivity {
         });
 
 
-//        加好友
-
-//        查看资料
-
 //      设置构造器
         labbersAdapater();
 
@@ -203,34 +199,6 @@ public class RankActivity extends AppCompatActivity {
         List<JSONObject>list=new ArrayList<>();
         @Override
         protected Object doInBackground(Object[] objects) {
-//            try {
-//                URL url=new URL("http://60.205.183.222:8080/xiaoxiaoyuan/FloorList");
-//                HttpURLConnection connection=(HttpURLConnection)url.openConnection();
-//                connection.setRequestProperty("contentType","UTF-8");
-//                Log.e("GetFriendRequestTask","此时与服务器获得连接");
-//                InputStream is=connection.getInputStream();
-//                InputStreamReader inputStreamReader=new InputStreamReader(is);
-//                BufferedReader reader=new BufferedReader(inputStreamReader);
-//                String res=reader.readLine();
-//                array=new JSONArray(res);
-//                for (int i=0;i<array.length();i++){
-//                    Map<String,Object>map=new HashMap<>();
-//                    JSONObject object=array.getJSONObject(i);
-//                    map.put("image",object.getString("image"));
-//                    map.put("name",object.getString("name"));
-//                    map.put("marks",object.getInt("floor"));
-//                    map.put("friends","加好友");
-//                    map.put("rank",i+1);
-//                    list.add(map);
-//                }
-//                Log.e("data1",list.toString());
-//            } catch (MalformedURLException e) {
-//                e.printStackTrace();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
                                 .url("http://192.168.43.179:8080/xiaoxiaoyuanssm/user/FloorList")
@@ -378,32 +346,69 @@ public class RankActivity extends AppCompatActivity {
     }
     //设置构造器
     private void friendsAdapater() {
-        List<Map<String,Object>>list=indata1();
-        friendsAdapater friendsAdapater=new friendsAdapater(this,R.layout.friendsranklistactivity,list);
-        ListView listView=findViewById(R.id.lv_ranklistfriends);
-        listView.setAdapter(friendsAdapater);
+            List<JSONObject>list=indata1();
     }
     //好友数据
-    private List<Map<String, Object>> indata1(){
-        String name[]={"姑苏","百里","陈生","端木","公羊","黄龙","即墨"};
-        String marks[]={"100","99","98","97","96","95","94"};
-        List<Map<String,Object>>list=new ArrayList<Map<String,Object>>();
-        for (int i=0;i<6;i++){
-            Map<String,Object>map=new HashMap<String,Object>();
-            map.put("image",R.mipmap.tou);
-            map.put("name",name[i]);
-            map.put("marks",marks[i]);
-            list.add(map);
+    private List<JSONObject> indata1(){
+        RankList1 rankList=new RankList1();
+        rankList.execute();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        return list;
+        List<JSONObject> data=rankList.labdata1();
+        Log.e("data3",data.toString());
+        return data;
+    }
+    public class RankList1 extends AsyncTask {
+        List<JSONObject>list=new ArrayList<>();
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            okHttpClient=new OkHttpClient();
+            Request request=new Request.Builder()
+                    .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/friendsList/findAllFriends")
+                    .build();
+
+            Call call=okHttpClient.newCall(request);
+            try {
+                Response response=call.execute();
+                String str=response.body().string();
+                Log.e("strList",str);
+                JSONArray jsonArray=new JSONArray(str);
+                for(int i=0;i<jsonArray.length();i++){
+                    JSONObject jsonObject=jsonArray.getJSONObject(i);
+                    Log.e("jsonObject",jsonObject.toString());
+                    list.add(jsonObject);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            publishProgress();
+            return null;
+        }
+        public List<JSONObject> labdata1(){
+            Log.e("data1",list.toString());
+            return list;
+        }
+
+        @Override
+        protected void onProgressUpdate(Object[] values) {
+            labbersAdapater labbersAdapater=new labbersAdapater(RankActivity.this,R.layout.friendsranklistactivity,list);
+            ListView listView=findViewById(R.id.lv_ranklistfriends);
+            listView.setAdapter(labbersAdapater);
+            super.onProgressUpdate(values);
+        }
     }
     //好友构造器
     private class friendsAdapater extends BaseAdapter{
         private Context context;
         private int Id;
-        private List<Map<String, Object>> data;
+        private List<JSONObject> data;
 
-        public friendsAdapater(Context context,int Id,List<Map<String, Object>> data){
+        public friendsAdapater(Context context,int Id,List<JSONObject> data){
             this.context=context;
             this.Id=Id;
             this.data=data;
@@ -432,10 +437,16 @@ public class RankActivity extends AppCompatActivity {
             TextView name=view.findViewById(R.id.fra_name);
             TextView marks=view.findViewById(R.id.fra_marks);
             //获取数据
-            Map<String, Object> map = data.get(position);
-            image.setImageResource((int)map.get("image"));
-            name.setText((String)map.get("name"));
-            marks.setText((String)map.get("marks"));
+            JSONObject jsonObject = data.get(position);
+            String a= null;
+            try {
+                image.setImageResource(jsonObject.getInt("fiends_image"));
+                name.setText(jsonObject.getString("fiends_name"));
+                marks.setText(jsonObject.getInt("fiends_current_floor"));
+                rank.setText(position+1+"");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             return view;
         }
     }
