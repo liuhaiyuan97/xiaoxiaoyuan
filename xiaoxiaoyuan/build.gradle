@@ -20,11 +20,23 @@ android {
     buildToolsVersion '27.0.3'
 
     defaultConfig {
-        applicationId "com.google.blockly.demo"
+        applicationId "com.google.blockly.android.demo"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a',"x86"
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "4dfca30314cd2d3cb0e346eb", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
     buildTypes {
         release {
@@ -50,4 +62,6 @@ dependencies {
     implementation files('libs/ant-1.8.0.jar')
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     compile 'com.github.huburt-Hu:NewbieGuide:v2.1.0'
+    compile 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
+    compile 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
 }

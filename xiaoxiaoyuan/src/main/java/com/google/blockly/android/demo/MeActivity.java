@@ -36,6 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -47,6 +48,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.DownloadAvatarCallback;
+import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
+import cn.jpush.im.android.api.model.UserInfo;
+import cn.jpush.im.api.BasicCallback;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -306,6 +312,17 @@ public class MeActivity extends AppCompatActivity{
                 //创建Adapter对象
                 MyFriendAdapter myFriendAdapter=new MyFriendAdapter(MeActivity.this,R.layout.layout_me_my_friend_item,friendList);
                 lvRightMyFriend.setAdapter(myFriendAdapter);
+
+                lvRightMyFriend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        try {
+                            Log.e("xinxi",friendList.get(i).getString("user_name"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 Log.e("getFriendListTASK","为控件设置adapter");
 
                 llMeRightMyFriend=view0.findViewById(R.id.ll_me_right_my_friend);
@@ -386,6 +403,17 @@ public class MeActivity extends AppCompatActivity{
                 //获取数据,创建Adapter对象，为控件设置adapter
                 GetMyFriendListTASK getMyFriendListTASK=new GetMyFriendListTASK(userid);
                 getMyFriendListTASK.execute();
+
+                lvRightMyFriend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        try {
+                            Log.e("xinxi",friendList.get(i).getString("user_name"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
 
 
 
@@ -824,6 +852,109 @@ public class MeActivity extends AppCompatActivity{
                         task.execute();
                         if (ty.equals("userName")) {
                             userName = in;
+                            UserInfo userInfo=new UserInfo() {
+                                @Override
+                                public String getNotename() {
+                                    return null;
+                                }
+
+                                @Override
+                                public String getNoteText() {
+                                    return null;
+                                }
+
+                                @Override
+                                public long getBirthday() {
+                                    return 0;
+                                }
+
+                                @Override
+                                public File getAvatarFile() {
+                                    return null;
+                                }
+
+                                @Override
+                                public void getAvatarFileAsync(DownloadAvatarCallback downloadAvatarCallback) {
+
+                                }
+
+                                @Override
+                                public void getAvatarBitmap(GetAvatarBitmapCallback getAvatarBitmapCallback) {
+
+                                }
+
+                                @Override
+                                public File getBigAvatarFile() {
+                                    return null;
+                                }
+
+                                @Override
+                                public void getBigAvatarBitmap(GetAvatarBitmapCallback getAvatarBitmapCallback) {
+
+                                }
+
+                                @Override
+                                public int getBlacklist() {
+                                    return 0;
+                                }
+
+                                @Override
+                                public int getNoDisturb() {
+                                    return 0;
+                                }
+
+                                @Override
+                                public boolean isFriend() {
+                                    return false;
+                                }
+
+                                @Override
+                                public String getAppKey() {
+                                    return null;
+                                }
+
+                                @Override
+                                public void setUserExtras(Map<String, String> map) {
+
+                                }
+
+                                @Override
+                                public void setUserExtras(String s, String s1) {
+
+                                }
+
+                                @Override
+                                public void setBirthday(long l) {
+
+                                }
+
+                                @Override
+                                public void setNoDisturb(int i, BasicCallback basicCallback) {
+
+                                }
+
+                                @Override
+                                public void removeFromFriendList(BasicCallback basicCallback) {
+
+                                }
+
+                                @Override
+                                public void updateNoteName(String s, BasicCallback basicCallback) {
+
+                                }
+
+                                @Override
+                                public void updateNoteText(String s, BasicCallback basicCallback) {
+
+                                }
+
+                                @Override
+                                public String getDisplayName() {
+                                    return null;
+                                }
+                            };
+                            userInfo.setNickname(in);
+                            JMessageClient.updateMyInfo(UserInfo.Field.nickname,userInfo,null);
                         } else if (ty.equals("userSex")) {
                             userSex = in;
                         } else if (ty.equals("userPhone")) {
@@ -922,7 +1053,7 @@ public class MeActivity extends AppCompatActivity{
 //            }
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                            .url("http://192.168.43.179:8080/xiaoxiaoyuanssm/friends/updateRequest?type="+type+"&id="+id+"&friendId="+friendId)
+                            .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/friends/updateRequest?type="+type+"&id="+id+"&friendId="+friendId)
                             .build();
             Call call=okHttpClient.newCall(request);
 
@@ -987,7 +1118,7 @@ public class MeActivity extends AppCompatActivity{
 //            }
                 okHttpClient=new OkHttpClient();
                 Request request=new Request.Builder()
-                                .url("http://192.168.43.179:8080/xiaoxiaoyuanssm/friends/selectRequest?id="+id)
+                                .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/friends/selectRequest?id="+id)
                                 .build();
                 Call call=okHttpClient.newCall(request);
 
@@ -1076,7 +1207,7 @@ public class MeActivity extends AppCompatActivity{
 //            }
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                            .url("http://192.168.43.179:8080/xiaoxiaoyuanssm/friends/insertRequest?id="+id+"&friend="+friend)
+                            .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/friends/insertRequest?id="+id+"&friend="+friend)
                             .build();
             Call call=okHttpClient.newCall(request);
             try {
@@ -1183,7 +1314,7 @@ public class MeActivity extends AppCompatActivity{
 //            }
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                    .url("http://192.168.43.179:8080/xiaoxiaoyuanssm/friends/findAllFriends?id="+id)
+                    .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/friends/findAllFriends?id="+id)
                     .build();
 
             Call call=okHttpClient.newCall(request);
@@ -1255,7 +1386,7 @@ public class MeActivity extends AppCompatActivity{
 //            }
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                            .url("http://192.168.43.179:8080/xiaoxiaoyuanssm/user/updateUserImage?id="+userid+"&imageid="+imageId)
+                            .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/user/updateUserImage?id="+userid+"&imageid="+imageId)
                             .build();
 
             Call call=okHttpClient.newCall(request);
@@ -1320,7 +1451,7 @@ public class MeActivity extends AppCompatActivity{
 //            }
                 okHttpClient=new OkHttpClient();
                 Request request=new Request.Builder()
-                        .url("http://192.168.43.179:8080/xiaoxiaoyuanssm/user/updateUserInfo?id="+id+"&type="+type+"&info="+information)
+                        .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/user/updateUserInfo?id="+id+"&type="+type+"&info="+information)
                         .build();
                 Call call=okHttpClient.newCall(request);
             try {
@@ -1384,7 +1515,7 @@ public class MeActivity extends AppCompatActivity{
 //            }
                 okHttpClient=new OkHttpClient();
                 Request request=new Request.Builder()
-                                .url("http://192.168.43.179:8080/xiaoxiaoyuanssm/friends/deleteFriend?id="+id+"&friendId="+friendId)
+                                .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/friends/deleteFriend?id="+id+"&friendId="+friendId)
                                 .build();
                 Call call=okHttpClient.newCall(request);
             try {
@@ -1451,7 +1582,7 @@ public class MeActivity extends AppCompatActivity{
 //            }
             okHttpClient =new OkHttpClient();
             Request request=new Request.Builder()
-                            .url("http://192.168.43.179:8080/xiaoxiaoyuanssm/user/showAllInfo?id="+id)
+                            .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/user/showAllInfo?id="+id)
                             .build();
             Call call=okHttpClient.newCall(request);
             try {
@@ -1487,6 +1618,7 @@ public class MeActivity extends AppCompatActivity{
                         int imageId = 0;
                         try {
                             imageId = Integer.valueOf(object.getString("user_image"));
+                            Log.e("img",R.mipmap.head9+""+R.mipmap.logo);
                             ivUserImage.setImageResource(imageId);
                             ivUserImageHead.setImageResource(imageId);
                             //用户名
@@ -1646,6 +1778,111 @@ public class MeActivity extends AppCompatActivity{
         Intent intent=getIntent();
         try {
             userid=new JSONObject(intent.getStringExtra("details")).getInt("user_id");
+            details=intent.getStringExtra("details");
+
+            UserInfo userInfo=new UserInfo() {
+                @Override
+                public String getNotename() {
+                    return null;
+                }
+
+                @Override
+                public String getNoteText() {
+                    return null;
+                }
+
+                @Override
+                public long getBirthday() {
+                    return 0;
+                }
+
+                @Override
+                public File getAvatarFile() {
+                    return null;
+                }
+
+                @Override
+                public void getAvatarFileAsync(DownloadAvatarCallback downloadAvatarCallback) {
+
+                }
+
+                @Override
+                public void getAvatarBitmap(GetAvatarBitmapCallback getAvatarBitmapCallback) {
+
+                }
+
+                @Override
+                public File getBigAvatarFile() {
+                    return null;
+                }
+
+                @Override
+                public void getBigAvatarBitmap(GetAvatarBitmapCallback getAvatarBitmapCallback) {
+
+                }
+
+                @Override
+                public int getBlacklist() {
+                    return 0;
+                }
+
+                @Override
+                public int getNoDisturb() {
+                    return 0;
+                }
+
+                @Override
+                public boolean isFriend() {
+                    return false;
+                }
+
+                @Override
+                public String getAppKey() {
+                    return null;
+                }
+
+                @Override
+                public void setUserExtras(Map<String, String> map) {
+
+                }
+
+                @Override
+                public void setUserExtras(String s, String s1) {
+
+                }
+
+                @Override
+                public void setBirthday(long l) {
+
+                }
+
+                @Override
+                public void setNoDisturb(int i, BasicCallback basicCallback) {
+
+                }
+
+                @Override
+                public void removeFromFriendList(BasicCallback basicCallback) {
+
+                }
+
+                @Override
+                public void updateNoteName(String s, BasicCallback basicCallback) {
+
+                }
+
+                @Override
+                public void updateNoteText(String s, BasicCallback basicCallback) {
+
+                }
+
+                @Override
+                public String getDisplayName() {
+                    return null;
+                }
+            };
+            userInfo.setNickname(new JSONObject(details).getString("user_name"));
+            JMessageClient.updateMyInfo(UserInfo.Field.nickname,userInfo,null);
         } catch (JSONException e) {
             e.printStackTrace();
         }

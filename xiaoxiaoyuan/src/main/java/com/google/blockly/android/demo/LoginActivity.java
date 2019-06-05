@@ -32,7 +32,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.event.MessageEvent;
+import cn.jpush.im.android.api.event.OfflineMessageEvent;
+import cn.jpush.im.android.api.model.Conversation;
+import cn.jpush.im.android.api.model.Message;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -75,6 +81,9 @@ public class LoginActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        JMessageClient.registerEventReceiver(this);
+        JMessageClient.setDebugMode(true);
+        JMessageClient.init(this);
         init();
         menuFlash=new MenuFlash(ivSpin,ivHome,ivCharts,ivCommunity,ivMe);
         menuFlash.play();
@@ -251,6 +260,8 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     private void init(){
+
+
         llAll = findViewById(R.id.ll_all);
         btnLogin=findViewById(R.id.btn_login);
         btnRegister=findViewById(R.id.btn_register);
@@ -324,7 +335,7 @@ public class LoginActivity extends AppCompatActivity{
 //            }
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                    .url("http://192.168.43.179:8080/xiaoxiaoyuanssm/user/login?phoneOremail="+userPhoneOrEmail+"&password="+userPassword)
+                    .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/user/login?phoneOremail="+userPhoneOrEmail+"&password="+userPassword)
                     .build();
 
             Call call=okHttpClient.newCall(request);
@@ -345,6 +356,11 @@ public class LoginActivity extends AppCompatActivity{
                         intent.putExtra("user",userPhoneOrEmail);
                         intent.putExtra("details",str);
                         intent.setClass(LoginActivity.this,HomePage.class);
+                        int id=new JSONObject(str).getInt("user_id");
+
+                        JMessageClient.register("user"+id,"1234",null);
+                        JMessageClient.login("user"+id,"1234",null);
+
                         startActivity(intent);
                         overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
                 }
@@ -404,4 +420,26 @@ public class LoginActivity extends AppCompatActivity{
 //        }
 //    }
 
+    public void onEvent(MessageEvent event) {
+        Message newMessage = event.getMessage();
+//        Conversation conversation = JMessageClient.getSingleConversation("1111");
+//        final List<Message> mes = conversation.getAllMessage();
+//        for (int i = 0; i < mes.size(); i++) {
+//            Log.e("11", mes.get(i).toJson());
+//        }
+//        MainActivity.this.runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                ListView listView=findViewById(R.id.lv);
+//                ChatAdapter chatAdapter=new ChatAdapter(MainActivity.this,R.layout.chat,mes);
+//                listView.setAdapter(chatAdapter);
+//                listView.setDivider(null);
+//            }
+//        });
+    }
+
+    public void onEvent(OfflineMessageEvent event){
+//        List<Message> newMessageList=event.getOfflineMessageList();
+//        tvReceive.setText(newMessageList.toString());
+    }
 }

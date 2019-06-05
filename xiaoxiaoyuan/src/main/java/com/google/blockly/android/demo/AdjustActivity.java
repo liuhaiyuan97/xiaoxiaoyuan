@@ -495,7 +495,7 @@ public class AdjustActivity extends AbstractBlocklyActivity {
                 int nextFloor=floor+1;
                 okHttpClient=new OkHttpClient();
                 Request request=new Request.Builder()
-                                .url("http://192.168.43.179:8080/xiaoxiaoyuanssm/user/addUserFloor?id="+userid+"&floor="+nextFloor)
+                                .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/user/addUserFloor?id="+userid+"&floor="+nextFloor)
                                 .build();
 
                 Call call=okHttpClient.newCall(request);

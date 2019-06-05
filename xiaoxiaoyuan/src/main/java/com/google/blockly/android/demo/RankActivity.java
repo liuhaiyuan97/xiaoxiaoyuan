@@ -201,7 +201,7 @@ public class RankActivity extends AppCompatActivity {
         protected Object doInBackground(Object[] objects) {
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                                .url("http://192.168.43.179:8080/xiaoxiaoyuanssm/user/FloorList")
+                                .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/user/FloorList")
                                 .build();
 
             Call call=okHttpClient.newCall(request);
