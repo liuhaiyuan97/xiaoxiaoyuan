@@ -497,4 +497,5 @@ public class RankActivity extends AppCompatActivity {
             user = intent.getStringExtra("user");
         }
     }
+
 }
