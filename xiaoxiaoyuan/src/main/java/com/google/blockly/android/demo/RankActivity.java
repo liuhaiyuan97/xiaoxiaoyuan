@@ -63,6 +63,7 @@ public class RankActivity extends AppCompatActivity {
     private static String user ="";
     private int msg;
     private JSONArray array;
+    private static int userid=0;
 
     private OkHttpClient okHttpClient;
     @Override
@@ -294,56 +295,59 @@ public class RankActivity extends AppCompatActivity {
 
     //    好友榜界面
     private void gotoFriends() {
-        setContentView(R.layout.friendsrankactivity);
-        hide();
-        labbers=findViewById(R.id.fra_labber);
-        labbers.setOnClickListener(listener);
-        //设置构造器
-        friendsAdapater();
-        init();
-
-        menuFlash=new MenuFlash(ivSpin,ivHome,ivCharts,ivCommunity,ivMe);
-        menuFlash.play();
-        ivSpin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                menuFlash.click(state);
-                if (state==true){
-                    state=false;
-                }else{
-                    state=true;
+        getUserid();
+        if (userid==0){
+            Toast.makeText(this,"请先登录",Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent();
+            intent.setClass( this,LoginActivity.class);
+            Log.e("状态:","未登录");
+            startActivity(intent);
+        }else{
+            setContentView(R.layout.friendsrankactivity);
+            hide();
+            labbers=findViewById(R.id.fra_labber);
+            labbers.setOnClickListener(listener);
+            //设置构造器
+            friendsAdapater();
+            init();
+            menuFlash=new MenuFlash(ivSpin,ivHome,ivCharts,ivCommunity,ivMe);
+            menuFlash.play();
+            ivSpin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    menuFlash.click(state);
+                    if (state==true){
+                        state=false;
+                    }else{
+                        state=true;
+                    }
                 }
-            }
-        });
-        ivHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent();
-                intent.setClass(RankActivity.this,HomePage.class);
-                startActivity(intent);
-            }
-        });
-
-
-        ivMe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if("".equals(user)){
-                    Intent intent=new Intent(RankActivity.this,LoginActivity.class);
-                    startActivity(intent);
-                }else{
-                    Intent intent=new Intent(RankActivity.this,MeActivity.class);
-                    intent.putExtra("user",user);
+            });
+            ivHome.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent();
+                    intent.setClass(RankActivity.this,HomePage.class);
                     startActivity(intent);
                 }
-            }
-        });
+            });
 
-
-//        查看资料
-
-
+            ivMe.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if("".equals(user)){
+                        Intent intent=new Intent(RankActivity.this,LoginActivity.class);
+                        startActivity(intent);
+                    }else{
+                        Intent intent=new Intent(RankActivity.this,MeActivity.class);
+                        intent.putExtra("user",user);
+                        startActivity(intent);
+                    }
+                }
+            });
+        }
     }
+
     //设置构造器
     private void friendsAdapater() {
             List<JSONObject>list=indata1();
@@ -367,7 +371,7 @@ public class RankActivity extends AppCompatActivity {
         protected Object doInBackground(Object[] objects) {
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                    .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/friendsList/findAllFriends")
+                    .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/friends/findFriendsList")
                     .build();
 
             Call call=okHttpClient.newCall(request);
@@ -452,6 +456,17 @@ public class RankActivity extends AppCompatActivity {
     }
 
 
+    //登录状态获取
+    public void getUserid(){
+        Intent intent=getIntent();
+        user=intent.getStringExtra("user");
+        try {
+            userid = new JSONObject(intent.getStringExtra("details")).getInt("user_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     //隐藏状态栏
     private void hide(){
@@ -482,4 +497,5 @@ public class RankActivity extends AppCompatActivity {
             user = intent.getStringExtra("user");
         }
     }
+
 }
