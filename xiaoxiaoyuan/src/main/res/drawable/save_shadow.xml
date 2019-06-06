@@ -16,7 +16,7 @@
 
             </item>
             <item>
-                <bitmap android:src="@drawable/save"/>
+                <bitmap android:src="@drawable/teach"/>
             </item>
         </layer-list>
     </item>
@@ -25,7 +25,7 @@
         <layer-list>
 
             <item >
-                <bitmap android:src="@drawable/save"/>
+                <bitmap android:src="@drawable/teach"/>
             </item>
         </layer-list>
     </item>

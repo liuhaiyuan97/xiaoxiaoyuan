@@ -350,6 +350,8 @@ public class LoginActivity extends AppCompatActivity{
                             tvUserNameAndPwdIsReference.setText("用户名或密码不正确!");
                         }
                     });
+
+
                 }else if(new JSONObject(str).getInt("user_id")!=0){
                         Intent intent=new Intent();
                         intent.putExtra("isLogin","yes");
@@ -364,6 +366,7 @@ public class LoginActivity extends AppCompatActivity{
                         startActivity(intent);
                         overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
                 }
+
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (JSONException e) {

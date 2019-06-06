@@ -7,6 +7,7 @@ import android.animation.ValueAnimator;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -17,6 +18,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -26,6 +28,9 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import java.lang.reflect.Field;
+
 
 public class HomePage extends AppCompatActivity {
     private static AudioManager audioManager=null;
@@ -68,6 +73,7 @@ public class HomePage extends AppCompatActivity {
         ivMe=findViewById(R.id.iv_me);
         llMenu=findViewById(R.id.ll_menu);
         list= new int[]{R.id.iv_HomePage, R.id.iv_charts, R.id.iv_community, R.id.iv_me};
+
     }
 
     private void show(){
@@ -441,6 +447,29 @@ public class HomePage extends AppCompatActivity {
         player.start();
         show();
         open();
+
+        try {
+           Field field=R.mipmap.class.getField("head9");
+           int i=field.getInt(new R.mipmap());
+           Log.e("icon",i+"");
+
+
+            TypedValue value = new TypedValue();
+            getResources().getValue(R.mipmap.ic_launcher, value, true);
+            String res = value.string.toString().substring(0, value.string.toString().length());
+            String resname = value.string.toString();
+            String sss=resname.substring(resname.lastIndexOf("/")+1,resname.lastIndexOf("."));
+
+            Log.e("nnn",res);
+            Log.e("nnn",sss);
+
+
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
         loop.sendEmptyMessageDelayed(0,2000);
     }
 
@@ -464,4 +493,6 @@ public class HomePage extends AppCompatActivity {
         player.pause();
         super.onDestroy();
     }
+
+
 }
