@@ -317,7 +317,11 @@ public class MeActivity extends AppCompatActivity{
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         try {
-                            Log.e("xinxi",friendList.get(i).getString("user_name"));
+                            Intent intent=new Intent(MeActivity.this,ChatActivity.class);
+                            intent.putExtra("toId",friendList.get(i).getString("user_id"));
+                            intent.putExtra("toName",friendList.get(i).getString("user_name"));
+                            intent.putExtra("details",details);
+                            startActivity(intent);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -407,8 +411,14 @@ public class MeActivity extends AppCompatActivity{
                 lvRightMyFriend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
                         try {
-                            Log.e("xinxi",friendList.get(i).getString("user_name"));
+                            Intent intent=new Intent(MeActivity.this,ChatActivity.class);
+                            intent.putExtra("toId",friendList.get(i).getString("user_id"));
+                            intent.putExtra("toName",friendList.get(i).getString("user_name"));
+                            intent.putExtra("toImg",friendList.get(i).getString("user_image"));
+                            intent.putExtra("details",details);
+                            startActivity(intent);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

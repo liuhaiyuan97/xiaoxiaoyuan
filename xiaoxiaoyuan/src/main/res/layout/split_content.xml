@@ -99,16 +99,16 @@
                 android:layout_weight="1"
                 android:layout_height="0dp" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="20dp"/>-->
         <LinearLayout
             android:background="@mipmap/bg_show2"
             android:id="@+id/ll_flash"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_weight="10"
-            android:layout_height="match_parent">
+            android:layout_height="0dp">
             <ImageView
                 android:id="@+id/generated_move"
                 android:src="@mipmap/wp"

@@ -269,7 +269,6 @@ public class HomePage extends AppCompatActivity {
                 }
             }
         });
-
         ivSpin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -439,8 +438,30 @@ public class HomePage extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         state=false;
+        player.start();
         show();
         open();
         loop.sendEmptyMessageDelayed(0,2000);
+    }
+
+    @Override
+    protected void onStop() {
+        state=true;
+        player.pause();
+        super.onStop();
+    }
+
+    @Override
+    protected void onRestart() {
+        state=false;
+        player.start();
+        super.onRestart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        state=true;
+        player.pause();
+        super.onDestroy();
     }
 }

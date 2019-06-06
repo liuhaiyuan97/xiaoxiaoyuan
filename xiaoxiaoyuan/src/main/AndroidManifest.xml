@@ -72,7 +72,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LuaActivity" android:screenOrientation="sensorLandscape">
+        <activity android:name=".LuaActivity" android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
@@ -90,12 +91,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" android:screenOrientation="sensorLandscape">
+        <activity android:name=".LoginActivity" android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" android:screenOrientation="sensorLandscape">
+        <activity android:name=".RegisterActivity" android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
@@ -105,7 +108,8 @@
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
-        <activity android:name=".AdjustActivity" android:screenOrientation="sensorLandscape">
+        <activity android:name=".AdjustActivity" android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
@@ -126,6 +130,21 @@
             </intent-filter>
         </activity>
         <activity android:name=".VideoActivity" android:screenOrientation="sensorLandscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".MessageEventReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ChatActivity" android:screenOrientation="sensorLandscape" android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".NotificationClickEvent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
