@@ -110,7 +110,10 @@ public  class RunActivity extends AppCompatActivity implements View.OnTouchListe
                         getQuestionContentTASK.execute();
                         Log.e("RunActivity", "运行弹出题目内容的异步类");
                     }
-                    if(floor>20){
+                    if(currentFloor>floor&&currentFloor<=20){
+                        Toast.makeText(RunActivity.this,"请先通过前面关卡",Toast.LENGTH_SHORT).show();
+                    }
+                    if(currentFloor>20){
                         Toast.makeText(RunActivity.this,"暂未开启",Toast.LENGTH_SHORT).show();
                     }
                 }

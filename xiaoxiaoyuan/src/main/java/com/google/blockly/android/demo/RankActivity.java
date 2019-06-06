@@ -2,6 +2,7 @@ package com.google.blockly.android.demo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -283,6 +284,19 @@ public class RankActivity extends AppCompatActivity {
                 name.setText(jsonObject.getString("user_name"));
                 labber.setText("层数:"+jsonObject.getInt("user_current_floor"));
                 rank.setText(position+1+"");
+
+                if(position+1==1){
+                    rank.setTextColor(Color.rgb(255,0,0));
+                    rank.setBackgroundResource(R.mipmap.gold);
+                }
+                if(position+1==2){
+                    rank.setTextColor(Color.rgb(0,0,0));
+                    rank.setBackgroundResource(R.mipmap.yinpai);
+                }
+                if(position+1==3){
+                    rank.setTextColor(Color.rgb(0,0,0));
+                    rank.setBackgroundResource(R.mipmap.tongpai);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -448,6 +462,19 @@ public class RankActivity extends AppCompatActivity {
                 name.setText(jsonObject.getString("fiends_name"));
                 marks.setText(jsonObject.getInt("fiends_current_floor"));
                 rank.setText(position+1+"");
+
+                if(position+1==1){
+                    rank.setTextColor(Color.rgb(255,0,0));
+                    rank.setBackgroundResource(R.mipmap.gold);
+                }
+                if(position+1==2){
+                    rank.setTextColor(Color.rgb(0,0,0));
+                    rank.setBackgroundResource(R.mipmap.yinpai);
+                }
+                if(position+1==3){
+                    rank.setTextColor(Color.rgb(0,0,0));
+                    rank.setBackgroundResource(R.mipmap.tongpai);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

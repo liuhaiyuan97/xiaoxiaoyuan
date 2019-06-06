@@ -449,19 +449,12 @@ public class HomePage extends AppCompatActivity {
         open();
 
         try {
-           Field field=R.mipmap.class.getField("head9");
+           Field field=R.mipmap.class.getField("logo");
            int i=field.getInt(new R.mipmap());
            Log.e("icon",i+"");
 
 
-            TypedValue value = new TypedValue();
-            getResources().getValue(R.mipmap.ic_launcher, value, true);
-            String res = value.string.toString().substring(0, value.string.toString().length());
-            String resname = value.string.toString();
-            String sss=resname.substring(resname.lastIndexOf("/")+1,resname.lastIndexOf("."));
 
-            Log.e("nnn",res);
-            Log.e("nnn",sss);
 
 
         } catch (NoSuchFieldException e) {

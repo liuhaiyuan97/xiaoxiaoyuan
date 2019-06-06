@@ -105,6 +105,39 @@ public class LuaActivity extends AbstractBlocklyActivity {
 
     private String mNoCodeText;
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LinearLayout linearLayout=findViewById(R.id.ll_left);
+        LinearLayout linearLayout1=findViewById(R.id.ll_center);
+        LinearLayout linearLayout2=findViewById(R.id.ll_function);
+        NewbieGuide.with(LuaActivity.this)
+                .setLabel("guide1")
+                .addGuidePage(GuidePage.newInstance()
+                        .addHighLight(linearLayout)
+                        .setLayoutRes(R.layout.guide)
+                )
+                .addGuidePage(GuidePage.newInstance()
+                        .addHighLight(linearLayout1)
+                        .setLayoutRes(R.layout.guide1))
+                .addGuidePage(GuidePage.newInstance()
+                        .addHighLight(btnReturn)
+                        .setLayoutRes(R.layout.guide2))
+                .addGuidePage(GuidePage.newInstance()
+                        .addHighLight(btnClear)
+                        .setLayoutRes(R.layout.guide4))
+                .addGuidePage(GuidePage.newInstance()
+                        .addHighLight(btnRun)
+                        .setLayoutRes(R.layout.guide5))
+                .addGuidePage(GuidePage.newInstance()
+                        .addHighLight(linearLayout2)
+                        .setLayoutRes(R.layout.guide6))
+                .addGuidePage(GuidePage.newInstance()
+                        .addHighLight(btnSave)
+                        .setLayoutRes(R.layout.guide3))
+                .show();
+    }
+
     Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
