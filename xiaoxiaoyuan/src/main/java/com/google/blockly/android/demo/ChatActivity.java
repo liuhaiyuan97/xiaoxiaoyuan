@@ -134,6 +134,7 @@ public class ChatActivity extends AppCompatActivity {
         toId = Integer.parseInt(str);
         details = intent.getStringExtra("details");
         String toimg = intent.getStringExtra("toImg");
+        Log.e("ssss","toId:"+str+"toimg:"+toimg);
         toImg = Integer.parseInt(toimg);
 
         TextView textView = findViewById(R.id.tv_name);
@@ -286,7 +287,7 @@ public class ChatActivity extends AppCompatActivity {
 //            }
             okHttpClient = new OkHttpClient();
             Request request = new Request.Builder()
-                    .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/user/showAllInfo?id=" + id)
+                    .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/user/showAllInfo?id=" + id)
                     .build();
             Call call = okHttpClient.newCall(request);
             try {

@@ -313,20 +313,20 @@ public class MeActivity extends AppCompatActivity{
                 MyFriendAdapter myFriendAdapter=new MyFriendAdapter(MeActivity.this,R.layout.layout_me_my_friend_item,friendList);
                 lvRightMyFriend.setAdapter(myFriendAdapter);
 
-                lvRightMyFriend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        try {
-                            Intent intent=new Intent(MeActivity.this,ChatActivity.class);
-                            intent.putExtra("toId",friendList.get(i).getString("user_id"));
-                            intent.putExtra("toName",friendList.get(i).getString("user_name"));
-                            intent.putExtra("details",details);
-                            startActivity(intent);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+//                lvRightMyFriend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                        try {
+//                            Intent intent=new Intent(MeActivity.this,ChatActivity.class);
+//                            intent.putExtra("toId",friendList.get(i).getString("user_id"));
+//                            intent.putExtra("toName",friendList.get(i).getString("user_name"));
+//                            intent.putExtra("details",details);
+//                            startActivity(intent);
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
                 Log.e("getFriendListTASK","为控件设置adapter");
 
                 llMeRightMyFriend=view0.findViewById(R.id.ll_me_right_my_friend);
@@ -696,7 +696,7 @@ public class MeActivity extends AppCompatActivity{
             btnFriendDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(MeActivity.this,"已删除",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MeActivity.this,"已删除",Toast.LENGTH_SHORT).show();
                     Log.e("MeActivity","点击了删除按钮" );
                     DeleteFriendTASK deleteFriendTASK= null;
                     try {
@@ -708,6 +708,28 @@ public class MeActivity extends AppCompatActivity{
                     Log.e("MeActivity","运行异步类删除好友完毕" );
                     friendList.remove(position);
                     delete.onClick(btnFriendDelete);
+
+                    GetMyFriendListTASK getMyFriendListTASK=new GetMyFriendListTASK(userid);
+                    getMyFriendListTASK.execute();
+
+                    MyFriendAdapter myFriendAdapter=new MyFriendAdapter(MeActivity.this,R.layout.layout_me_my_friend_item,friendList);
+                    lvRightMyFriend.setAdapter(myFriendAdapter);
+
+                    lvRightMyFriend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            try {
+                                Intent intent=new Intent(MeActivity.this,ChatActivity.class);
+                                intent.putExtra("toId",friendList.get(i).getString("user_id"));
+                                intent.putExtra("toName",friendList.get(i).getString("user_name"));
+                                intent.putExtra("toImg",friendList.get(i).getString("user_image"));
+                                intent.putExtra("details",details);
+                                startActivity(intent);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
                 }
             });
             return convertView;
@@ -1063,7 +1085,7 @@ public class MeActivity extends AppCompatActivity{
 //            }
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                            .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/friends/updateRequest?type="+type+"&id="+id+"&friendId="+friendId)
+                            .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/friends/updateRequest?type="+type+"&id="+id+"&friendId="+friendId)
                             .build();
             Call call=okHttpClient.newCall(request);
 
@@ -1128,7 +1150,7 @@ public class MeActivity extends AppCompatActivity{
 //            }
                 okHttpClient=new OkHttpClient();
                 Request request=new Request.Builder()
-                                .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/friends/selectRequest?id="+id)
+                                .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/friends/selectRequest?id="+id)
                                 .build();
                 Call call=okHttpClient.newCall(request);
 
@@ -1217,7 +1239,7 @@ public class MeActivity extends AppCompatActivity{
 //            }
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                            .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/friends/insertRequest?id="+id+"&friend="+friend)
+                            .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/friends/insertRequest?id="+id+"&friend="+friend)
                             .build();
             Call call=okHttpClient.newCall(request);
             try {
@@ -1324,7 +1346,7 @@ public class MeActivity extends AppCompatActivity{
 //            }
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                    .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/friends/findAllFriends?id="+id)
+                    .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/friends/findAllFriends?id="+id)
                     .build();
 
             Call call=okHttpClient.newCall(request);
@@ -1396,7 +1418,7 @@ public class MeActivity extends AppCompatActivity{
 //            }
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                            .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/user/updateUserImage?id="+userid+"&imageid="+imageId)
+                            .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/user/updateUserImage?id="+userid+"&imageid="+imageId)
                             .build();
 
             Call call=okHttpClient.newCall(request);
@@ -1461,7 +1483,7 @@ public class MeActivity extends AppCompatActivity{
 //            }
                 okHttpClient=new OkHttpClient();
                 Request request=new Request.Builder()
-                        .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/user/updateUserInfo?id="+id+"&type="+type+"&info="+information)
+                        .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/user/updateUserInfo?id="+id+"&type="+type+"&info="+information)
                         .build();
                 Call call=okHttpClient.newCall(request);
             try {
@@ -1525,14 +1547,13 @@ public class MeActivity extends AppCompatActivity{
 //            }
                 okHttpClient=new OkHttpClient();
                 Request request=new Request.Builder()
-                                .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/friends/deleteFriend?id="+id+"&friendId="+friendId)
+                                .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/friends/deleteFriend?id="+id+"&friendId="+friendId)
                                 .build();
                 Call call=okHttpClient.newCall(request);
             try {
                 Response response=call.execute();
                 String str=response.body().string();
-                String sub=str.substring(0,str.length()-1);
-                if(sub.equals("true")){
+                if(str.equals("true")){
                     MeActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -1592,7 +1613,7 @@ public class MeActivity extends AppCompatActivity{
 //            }
             okHttpClient =new OkHttpClient();
             Request request=new Request.Builder()
-                            .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/user/showAllInfo?id="+id)
+                            .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/user/showAllInfo?id="+id)
                             .build();
             Call call=okHttpClient.newCall(request);
             try {

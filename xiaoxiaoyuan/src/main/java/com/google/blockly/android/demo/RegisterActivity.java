@@ -456,7 +456,7 @@ public class RegisterActivity extends AppCompatActivity{
 //            }
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                    .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/user/isExitEmail?email="+email)
+                    .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/user/isExitEmail?email="+email)
                     .build();
             Call call=okHttpClient.newCall(request);
             try {
@@ -531,7 +531,7 @@ public class RegisterActivity extends AppCompatActivity{
 
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                    .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/user/regist?phoneOremail="+phoneOrEmail+"&password="+password)
+                    .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/user/regist?phoneOremail="+phoneOrEmail+"&password="+password)
                     .build();
             Call call=okHttpClient.newCall(request);
             try {

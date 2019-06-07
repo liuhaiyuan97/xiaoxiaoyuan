@@ -368,7 +368,7 @@ public  class RunActivity extends AppCompatActivity implements View.OnTouchListe
 //            }
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                            .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/user/selectFloorByUserId?id="+userid)
+                            .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/user/selectFloorByUserId?id="+userid)
                             .build();
 
             Call call=okHttpClient.newCall(request);
@@ -426,7 +426,7 @@ public  class RunActivity extends AppCompatActivity implements View.OnTouchListe
 
                 okHttpClient=new OkHttpClient();
                 Request request=new Request.Builder()
-                                    .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/question/selectQuestionByQid?id="+questionId)
+                                    .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/question/selectQuestionByQid?id="+questionId)
                                     .build();
                 Call call=okHttpClient.newCall(request);
                 Response response=call.execute();

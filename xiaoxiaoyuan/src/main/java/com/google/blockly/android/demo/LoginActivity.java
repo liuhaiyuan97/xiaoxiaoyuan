@@ -335,7 +335,7 @@ public class LoginActivity extends AppCompatActivity{
 //            }
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                    .url("http://10.7.88.20:8080/xiaoxiaoyuanssm/user/login?phoneOremail="+userPhoneOrEmail+"&password="+userPassword)
+                    .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/user/login?phoneOremail="+userPhoneOrEmail+"&password="+userPassword)
                     .build();
 
             Call call=okHttpClient.newCall(request);
