@@ -336,6 +336,7 @@ public class HomePage extends AppCompatActivity {
                 end();
                 Intent intent=new Intent(HomePage.this,RankActivity.class);
                 intent.putExtra("user",user);
+                intent.putExtra("details",details);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
             }
@@ -385,6 +386,16 @@ public class HomePage extends AppCompatActivity {
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }
+            }
+        });
+        ivCommunity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(HomePage.this,CommentActivity.class);
+                intent.putExtra("user",user);
+                intent.putExtra("details",details);
+                startActivity(intent);
             }
         });
 

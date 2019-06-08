@@ -194,6 +194,14 @@ public class LoginActivity extends AppCompatActivity{
                 },500);
             }
         });
+        ivCommunity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(LoginActivity.this,CommentActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

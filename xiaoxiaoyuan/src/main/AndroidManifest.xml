@@ -149,6 +149,12 @@
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
+        <activity android:name=".CommentActivity" android:screenOrientation="sensorLandscape"
+            android:theme="@style/AppTheme.NO">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
 
         <service
             android:name="cn.jpush.android.service.PushService"

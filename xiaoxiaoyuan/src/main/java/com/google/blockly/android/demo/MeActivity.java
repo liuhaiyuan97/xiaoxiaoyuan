@@ -270,6 +270,14 @@ public class MeActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+        ivCommunity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(MeActivity.this,CommentActivity.class);
+                startActivity(intent);
+            }
+        });
 
         delete=new View.OnClickListener() {
             @Override

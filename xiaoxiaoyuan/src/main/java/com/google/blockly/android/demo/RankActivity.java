@@ -113,6 +113,14 @@ public class RankActivity extends AppCompatActivity {
                 }
             }
         });
+        ivCommunity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(RankActivity.this,CommentActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //界面监听
@@ -357,6 +365,14 @@ public class RankActivity extends AppCompatActivity {
                         intent.putExtra("user",user);
                         startActivity(intent);
                     }
+                }
+            });
+            ivCommunity.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent();
+                    intent.setClass(RankActivity.this,CommentActivity.class);
+                    startActivity(intent);
                 }
             });
         }
