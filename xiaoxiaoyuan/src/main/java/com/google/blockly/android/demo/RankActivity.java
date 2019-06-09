@@ -65,6 +65,7 @@ public class RankActivity extends AppCompatActivity {
     private int msg;
     private JSONArray array;
     private static int userid=0;
+    private String details="";
 
     private OkHttpClient okHttpClient;
     @Override
@@ -109,6 +110,7 @@ public class RankActivity extends AppCompatActivity {
                 }else{
                     Intent intent=new Intent(RankActivity.this,MeActivity.class);
                     intent.putExtra("user",user);
+                    intent.putExtra("details",details);
                     startActivity(intent);
                 }
             }
@@ -177,6 +179,7 @@ public class RankActivity extends AppCompatActivity {
                 }else{
                     Intent intent=new Intent(RankActivity.this,MeActivity.class);
                     intent.putExtra("user",user);
+                    intent.putExtra("details",details);
                     startActivity(intent);
                 }
             }
@@ -363,6 +366,7 @@ public class RankActivity extends AppCompatActivity {
                     }else{
                         Intent intent=new Intent(RankActivity.this,MeActivity.class);
                         intent.putExtra("user",user);
+                        intent.putExtra("details",details);
                         startActivity(intent);
                     }
                 }
@@ -377,7 +381,6 @@ public class RankActivity extends AppCompatActivity {
             });
         }
     }
-
     //设置构造器
     private void friendsAdapater() {
             List<JSONObject>list=indata1();
@@ -505,6 +508,7 @@ public class RankActivity extends AppCompatActivity {
         user=intent.getStringExtra("user");
         try {
             userid = new JSONObject(intent.getStringExtra("details")).getInt("user_id");
+            details=intent.getStringExtra("details");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -538,6 +542,8 @@ public class RankActivity extends AppCompatActivity {
         Intent intent=getIntent();
         if(intent.getStringExtra("user")!= null) {
             user = intent.getStringExtra("user");
+            details=intent.getStringExtra("details");
+            Log.e("lalala",details+"111");
         }
     }
 

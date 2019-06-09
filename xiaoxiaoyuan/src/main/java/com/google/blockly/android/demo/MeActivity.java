@@ -1751,7 +1751,6 @@ public class MeActivity extends AppCompatActivity{
         userPhoneOrEmail=intent.getStringExtra("user");
         try {
             userid=new JSONObject(intent.getStringExtra("details")).getInt("user_id");
-            details=intent.getStringExtra("details");
         } catch (JSONException e) {
             e.printStackTrace();
         }

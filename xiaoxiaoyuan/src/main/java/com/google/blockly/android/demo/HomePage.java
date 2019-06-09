@@ -458,21 +458,7 @@ public class HomePage extends AppCompatActivity {
         player.start();
         show();
         open();
-
-        try {
-           Field field=R.mipmap.class.getField("logo");
-           int i=field.getInt(new R.mipmap());
-           Log.e("icon",i+"");
-
-
-
-
-
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        Log.e("img",R.mipmap.head9+" "+R.mipmap.logo);
 
         loop.sendEmptyMessageDelayed(0,2000);
     }
