@@ -160,8 +160,10 @@ public class VideoActivity extends AppCompatActivity {
                     case R.id.vv_videoView:
                         if(state==false){
                             hideButtom();
+                            Log.e("111","ssss");
                         }else if(state==true){
                             dishideButtom();
+                            Log.e("111","hhhh");
                         }
                 }
             }
@@ -508,14 +510,14 @@ public class VideoActivity extends AppCompatActivity {
     * 播放时隐藏下边框
     */
     public void hideButtom(){
-        ObjectAnimator o5 = ObjectAnimator.ofFloat(relativeLayout, "translationX", 0, 200);
+        ObjectAnimator o5 = ObjectAnimator.ofFloat(relativeLayout, "translationY", 0, 200);
         o5.setDuration(500);
         o5.setStartDelay(100);
         o5.start();
     }
     //取消隐藏
     public void dishideButtom(){
-        ObjectAnimator o5 = ObjectAnimator.ofFloat(relativeLayout, "translationX", 200,0);
+        ObjectAnimator o5 = ObjectAnimator.ofFloat(relativeLayout, "translationY", 200,0);
         o5.setDuration(500);
         o5.setStartDelay(100);
         o5.start();

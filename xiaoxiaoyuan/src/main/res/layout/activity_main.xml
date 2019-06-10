@@ -6,6 +6,7 @@
     >
 
     <RelativeLayout
+        android:descendantFocusability="blocksDescendants"
         android:id="@+id/rl_videolayout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
@@ -56,9 +57,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:background="@color/edittext"
-                        android:textColor=""
-                        android:text="播放"/>
+                        android:background="#f35600"
+                        android:textColor="#ffffff"
+                        android:fontFamily="@font/fzzj"
+                        android:textStyle="bold"
+                        android:text="暂停"/>
                     <!--现在的时间-->
                     <TextView
                         android:id="@+id/tv_time_current"
