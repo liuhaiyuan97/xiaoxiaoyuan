@@ -1,6 +1,7 @@
 package com.google.blockly.android.demo;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -38,11 +39,10 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class VideoActivity extends AppCompatActivity {
-
     //需要竖屏隐藏的音量title
     @BindView(R.id.tv_vol_name)
     TextView mTvVolName;
-    //徐奥竖屏隐藏的音量分割线
+    //竖屏隐藏的音量分割线
     @BindView(R.id.v_line)
     View mVLine;
     //最外层的布局
@@ -84,6 +84,8 @@ public class VideoActivity extends AppCompatActivity {
     View mOperationPercent;
     @BindView(R.id.fl_content)
     LinearLayout mFlContent;
+    @BindView(R.id.Relative)
+    RelativeLayout relativeLayout;
     //butterknife
     Unbinder mUnbinder;
     //定义两个变量：代表当前屏幕的宽和屏幕的高
@@ -103,6 +105,7 @@ public class VideoActivity extends AppCompatActivity {
     private float lastY;
     //生命一个亮度值
     private float mBrightness;
+    private boolean state=false;
     /**
      * 定义Handler刷新时间
      * 得到并设置当前视频播放的时间
@@ -149,6 +152,21 @@ public class VideoActivity extends AppCompatActivity {
         initVideoPlay();
         synchScrollSeekBarAndTime();
         initGesture();
+
+        mVvVideoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()){
+                    case R.id.vv_videoView:
+                        if(state==false){
+                            hideButtom();
+                        }else if(state==true){
+                            dishideButtom();
+                        }
+                }
+            }
+        });
+
     }
 
     /**
@@ -454,39 +472,6 @@ public class VideoActivity extends AppCompatActivity {
         textView.setText(str);
     }
 
-    /**
-     * 请求读取SD卡权限
-     */
-//    private void requestSDpermission() {
-//        if (ContextCompat.checkSelfPermission(VideoActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(VideoActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-//        } else {
-//            initLocalVideoPath();
-//        }
-//    }
-
-    /**
-     * 读取权限的操作回调
-//     *
-//     * @param requestCode
-//     * @param permissions
-//     * @param grantResults
-//     */
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        switch (requestCode) {
-//            case 1:
-//                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    initLocalVideoPath();
-//                } else {
-//                    Toast.makeText(this, "拒绝权限将无法使用程序", Toast.LENGTH_SHORT).show();
-//                    finish();
-//                }
-//                break;
-//            default:
-//        }
-//    }
         //隐藏状态栏
     private void hide(){
         Window window = getWindow();
@@ -518,6 +503,22 @@ public class VideoActivity extends AppCompatActivity {
         if (mVvVideoView != null) {
             mVvVideoView.suspend();
         }
+    }
+    /**
+    * 播放时隐藏下边框
+    */
+    public void hideButtom(){
+        ObjectAnimator o5 = ObjectAnimator.ofFloat(relativeLayout, "translationX", 0, 200);
+        o5.setDuration(500);
+        o5.setStartDelay(100);
+        o5.start();
+    }
+    //取消隐藏
+    public void dishideButtom(){
+        ObjectAnimator o5 = ObjectAnimator.ofFloat(relativeLayout, "translationX", 200,0);
+        o5.setDuration(500);
+        o5.setStartDelay(100);
+        o5.start();
     }
 
 }
