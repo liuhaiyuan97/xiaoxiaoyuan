@@ -148,16 +148,16 @@ public class ChatActivity extends AppCompatActivity {
         }
         Conversation.createSingleConversation("user" + toId);
         Conversation conversation = JMessageClient.getSingleConversation("user" + toId);
-
+        if(conversation.getAllMessage()!=null){
         List<Message> messages = conversation.getAllMessage();
-        for (int i = 0; i < messages.size(); i++) {
-            Log.e("msg", messages.get(i).toJson());
+            for (int i = 0; i < messages.size(); i++) {
+                Log.e("msg", messages.get(i).toJson());
+            }
+            ListView listView = findViewById(R.id.lv);
+            ChatAdapter chatAdapter = new ChatAdapter(ChatActivity.this, R.layout.chat, messages);
+            listView.setAdapter(chatAdapter);
+            listView.setDivider(null);
         }
-        ListView listView = findViewById(R.id.lv);
-        ChatAdapter chatAdapter = new ChatAdapter(ChatActivity.this, R.layout.chat, messages);
-        listView.setAdapter(chatAdapter);
-        listView.setDivider(null);
-
         super.onStart();
     }
 

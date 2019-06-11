@@ -249,6 +249,7 @@ public class MeActivity extends AppCompatActivity{
             public void onClick(View view) {
                 Intent intent=new Intent(MeActivity.this,RankActivity.class);
                 intent.putExtra("user",userPhoneOrEmail);
+                intent.putExtra("details",details);
                 startActivity(intent);
             }
         });

@@ -293,9 +293,14 @@ public class RankActivity extends AppCompatActivity {
             String a= null;
             try {
                 image.setImageResource(jsonObject.getInt("user_image"));
-                name.setText(jsonObject.getString("user_name"));
                 labber.setText("层数:"+jsonObject.getInt("user_current_floor"));
                 rank.setText(position+1+"");
+                if(data.get(position).getInt("user_id")==userid){
+                    name.setText("我");
+                    name.setTextColor(Color.rgb(255,0,0));
+                }else{
+                    name.setText(jsonObject.getString("user_name"));
+                }
 
                 if(position+1==1){
                     rank.setTextColor(Color.rgb(255,0,0));
@@ -480,10 +485,14 @@ public class RankActivity extends AppCompatActivity {
             String a= null;
             try {
                 image.setImageResource(jsonObject.getInt("user_image"));
-                name.setText(jsonObject.getString("user_name"));
-                marks.setText(jsonObject.getString("user_current_floor"));
+                marks.setText("层数:"+jsonObject.getString("user_current_floor"));
                 tv_fri_rank.setText(position+1+"");
-
+                if(data.get(position).getInt("user_id")==userid){
+                    name.setText("我");
+                    name.setTextColor(Color.rgb(255,0,0));
+                }else{
+                    name.setText(jsonObject.getString("user_name"));
+                }
                 if(position+1==1){
                     tv_fri_rank.setTextColor(Color.rgb(255,0,0));
                     tv_fri_rank.setBackgroundResource(R.mipmap.gold);
