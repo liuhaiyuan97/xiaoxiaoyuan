@@ -3,45 +3,6 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android" >
-    <!--<LinearLayout-->
-        <!--android:orientation="horizontal"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-        <!--<Button-->
-            <!--android:id="@+id/btnReg"-->
-            <!--android:text="注册"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-        <!--<Button-->
-            <!--android:id="@+id/btnLog"-->
-            <!--android:text="登录"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-        <!--<Button-->
-            <!--android:id="@+id/btnSee"-->
-            <!--android:text="查看信息"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-        <!--<Button-->
-            <!--android:id="@+id/btnDel"-->
-            <!--android:text="注销"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-
-    <!--</LinearLayout>-->
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-        <!--<EditText-->
-            <!--android:id="@+id/ed_send"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content" />-->
-    <!--</LinearLayout>-->
-    <!--<Button-->
-        <!--android:text="消息记录"-->
-        <!--android:id="@+id/btn_message"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
 
     <LinearLayout
         android:gravity="center"
@@ -67,7 +28,7 @@
             android:layout_height="match_parent" />
     </LinearLayout>
     <ListView
-        android:background="#fffef9"
+        android:background="#fffeef"
         android:stackFromBottom="true"
         android:id="@+id/lv"
         android:layout_width="match_parent"
@@ -78,9 +39,10 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3">
+        android:layout_weight="2">
         <EditText
-            android:textCursorDrawable="@null"
+            android:layout_marginLeft="10dp"
+            android:textCursorDrawable="@drawable/my_text"
             android:background="#FFFFFF"
             android:id="@+id/et_send"
             android:layout_weight="6"
