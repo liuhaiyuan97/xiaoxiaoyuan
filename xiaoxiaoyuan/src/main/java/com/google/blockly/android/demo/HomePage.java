@@ -454,34 +454,10 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        state=false;
-        player.start();
         show();
         open();
         Log.e("img",R.mipmap.head9+" "+R.mipmap.logo);
-
         loop.sendEmptyMessageDelayed(0,2000);
-    }
-
-    @Override
-    protected void onStop() {
-        state=true;
-        player.pause();
-        super.onStop();
-    }
-
-    @Override
-    protected void onRestart() {
-        state=false;
-        player.start();
-        super.onRestart();
-    }
-
-    @Override
-    protected void onDestroy() {
-        state=true;
-        player.pause();
-        super.onDestroy();
     }
 
 

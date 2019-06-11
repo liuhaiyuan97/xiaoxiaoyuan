@@ -66,6 +66,7 @@ public class RankActivity extends AppCompatActivity {
     private JSONArray array;
     private static int userid=0;
     private String details="";
+    private TextView tv_fri_rank;
 
     private OkHttpClient okHttpClient;
     @Override
@@ -404,7 +405,7 @@ public class RankActivity extends AppCompatActivity {
         protected Object doInBackground(Object[] objects) {
             okHttpClient=new OkHttpClient();
             Request request=new Request.Builder()
-                    .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/friends/findFriendsList")
+                    .url("http://47.100.52.142:8080/xiaoxiaoyuanssm/friends/findFriendsList?id="+userid)
                     .build();
 
             Call call=okHttpClient.newCall(request);
@@ -433,7 +434,7 @@ public class RankActivity extends AppCompatActivity {
 
         @Override
         protected void onProgressUpdate(Object[] values) {
-            labbersAdapater labbersAdapater=new labbersAdapater(RankActivity.this,R.layout.friendsranklistactivity,list);
+            friendsAdapater labbersAdapater=new friendsAdapater(RankActivity.this,R.layout.friendsranklistactivity,list);
             ListView listView=findViewById(R.id.lv_ranklistfriends);
             listView.setAdapter(labbersAdapater);
             super.onProgressUpdate(values);
@@ -473,26 +474,27 @@ public class RankActivity extends AppCompatActivity {
             ImageView image=view.findViewById(R.id.fra_image);
             TextView name=view.findViewById(R.id.fra_name);
             TextView marks=view.findViewById(R.id.fra_marks);
+            tv_fri_rank=view.findViewById(R.id.fri_rank);
             //获取数据
             JSONObject jsonObject = data.get(position);
             String a= null;
             try {
-                image.setImageResource(jsonObject.getInt("fiends_image"));
-                name.setText(jsonObject.getString("fiends_name"));
-                marks.setText(jsonObject.getInt("fiends_current_floor"));
-                rank.setText(position+1+"");
+                image.setImageResource(jsonObject.getInt("user_image"));
+                name.setText(jsonObject.getString("user_name"));
+                marks.setText(jsonObject.getString("user_current_floor"));
+                tv_fri_rank.setText(position+1+"");
 
                 if(position+1==1){
-                    rank.setTextColor(Color.rgb(255,0,0));
-                    rank.setBackgroundResource(R.mipmap.gold);
+                    tv_fri_rank.setTextColor(Color.rgb(255,0,0));
+                    tv_fri_rank.setBackgroundResource(R.mipmap.gold);
                 }
                 if(position+1==2){
-                    rank.setTextColor(Color.rgb(0,0,0));
-                    rank.setBackgroundResource(R.mipmap.yinpai);
+                    tv_fri_rank.setTextColor(Color.rgb(0,0,0));
+                    tv_fri_rank.setBackgroundResource(R.mipmap.yinpai);
                 }
                 if(position+1==3){
-                    rank.setTextColor(Color.rgb(0,0,0));
-                    rank.setBackgroundResource(R.mipmap.tongpai);
+                    tv_fri_rank.setTextColor(Color.rgb(0,0,0));
+                    tv_fri_rank.setBackgroundResource(R.mipmap.tongpai);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -507,7 +509,12 @@ public class RankActivity extends AppCompatActivity {
         Intent intent=getIntent();
         user=intent.getStringExtra("user");
         try {
-            userid = new JSONObject(intent.getStringExtra("details")).getInt("user_id");
+
+            if(intent.getStringExtra("user").equals("")){
+                userid=0;
+            }else{
+                userid = new JSONObject(intent.getStringExtra("details")).getInt("user_id");
+            }
             details=intent.getStringExtra("details");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -543,8 +550,12 @@ public class RankActivity extends AppCompatActivity {
         if(intent.getStringExtra("user")!= null) {
             user = intent.getStringExtra("user");
             details=intent.getStringExtra("details");
-            Log.e("lalala",details+"111");
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        init();
+    }
 }

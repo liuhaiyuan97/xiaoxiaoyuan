@@ -6,10 +6,16 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <LinearLayout
+        android:gravity="center"
         android:layout_gravity="center"
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:background="@mipmap/bg_lab">
+        <TextView
+            android:gravity="center"
+            android:id="@+id/fri_rank"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
         <ImageView
             android:src="@mipmap/tou"
             android:id="@+id/fra_image"
