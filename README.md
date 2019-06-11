@@ -34,19 +34,21 @@
  <p>
 <img src="./image/欢迎页面.png" width=400 height=250 />
 <img src="./image/首页.png" width=400 height=250 />
-<img src="./image/登录.png" width=400 height=250 />
 </p>
 <p>
+<img src="./image/登录.png" width=400 height=250 />
 <img src="./image/注册.png" width=400 height=250 />
+<img src="./image/个人中心.png" width=400 height=250 />
+</p>
+<p>
+<img src="./image/闯关界面.png" width=400 height=250 />
 <img src="./image/查看题目.png" width=400 height=250 />
 <img src="./image/编码界面.png" width=400 height=250 />
 </p>
 <p>
 <img src="./image/排行榜界面.png" width=400 height=250 />
-<img src="./image/个人中心.png" width=400 height=250 />
 <img src="./image/视频播放界面.png" width=400 height=250 />
 </p>
 <p>
-<img src="./image/闯关界面.png" width=400 height=250 />
 <img src="./image/聊天界面.png" width=400 height=250 />
 </p>
